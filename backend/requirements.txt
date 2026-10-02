@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+pydantic
+sqlalchemy
+psycopg[binary]
+pydantic-settings
+python-dotenv
+alembic
+email-validator
