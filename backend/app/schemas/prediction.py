@@ -52,3 +52,5 @@ class AIStatusResponse(BaseModel):
     trained_at: Optional[datetime] = None
     training_records: int = 0
     evaluation_metrics: Optional[dict] = None
+    completed_records_count: int = 0
+

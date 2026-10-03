@@ -11,6 +11,7 @@ from app.api import customers
 from app.api import orders
 from app.api import production
 from app.api import ai_predictions
+from app.api import ai_import
 from app.api import dashboard
 from app.api import analytics
 from app.api import reports
@@ -56,6 +57,7 @@ app.include_router(customers.router, prefix="/api/customers", tags=["customers"]
 app.include_router(orders.router, prefix="/api/orders", tags=["orders"], dependencies=[Depends(require_admin)])
 app.include_router(production.router, prefix="/api/production", tags=["production"], dependencies=[Depends(require_admin)])
 app.include_router(ai_predictions.router, prefix="/api/ai", tags=["ai"], dependencies=[Depends(require_admin)])
+app.include_router(ai_import.router, prefix="/api/ai/import", tags=["ai import"], dependencies=[Depends(require_admin)])
 app.include_router(dashboard.router, prefix="/api/dashboard", tags=["dashboard"], dependencies=[Depends(require_admin)])
 app.include_router(analytics.router, prefix="/api/analytics", tags=["analytics"], dependencies=[Depends(require_admin)])
 app.include_router(reports.router, prefix="/api/reports", tags=["reports"], dependencies=[Depends(require_admin)])
@@ -84,3 +86,4 @@ def database_health_check(db: Session = Depends(get_db)):
             "database": "disconnected",
             "message": "PostgreSQL connection failed"
         }
+

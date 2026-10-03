@@ -7,6 +7,7 @@ export interface AIStatus {
   trained_at?: string;
   training_records: number;
   evaluation_metrics?: any;
+  completed_records_count?: number;
 }
 
 export interface PredictionResponse {
@@ -74,4 +75,57 @@ export const predictOrder = async (orderId: number): Promise<PredictionResponse>
 export const getPredictionHistory = async (productionId: number): Promise<PredictionHistory[]> => {
   const response = await api.get(`/api/ai/history/${productionId}`);
   return response.data;
+};
+
+export interface HistoricalProductionRow {
+  production_code: string;
+  order_id: number;
+  department: string;
+  target_quantity: number;
+  completed_quantity: number;
+  planned_start_date: string;
+  planned_end_date: string;
+  actual_start_date?: string;
+  actual_end_date?: string;
+  status: string;
+  is_valid: boolean;
+  validation_error?: string;
+}
+
+export interface ImportPreviewResponse {
+  total_records: number;
+  valid_records: number;
+  invalid_records: number;
+  duplicate_records: number;
+  rows: HistoricalProductionRow[];
+}
+
+export const previewHistoricalFile = async (file: File): Promise<ImportPreviewResponse> => {
+  const formData = new FormData();
+  formData.append('file', file);
+  const response = await api.post('/api/ai/import/preview-file', formData, {
+    headers: { 'Content-Type': 'multipart/form-data' }
+  });
+  return response.data;
+};
+
+export const previewHistoricalUrl = async (url: string): Promise<ImportPreviewResponse> => {
+  const response = await api.post('/api/ai/import/preview-url', { url });
+  return response.data;
+};
+
+export const confirmHistoricalImport = async (rows: HistoricalProductionRow[]) => {
+  const response = await api.post('/api/ai/import/confirm', { rows });
+  return response.data;
+};
+
+export const downloadHistoricalTemplate = async () => {
+  const response = await api.get('/api/ai/import/template', { responseType: 'blob' });
+  const url = window.URL.createObjectURL(new Blob([response.data]));
+  const link = document.createElement('a');
+  link.href = url;
+  link.setAttribute('download', 'texflow_historical_production_template.xlsx');
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
 };

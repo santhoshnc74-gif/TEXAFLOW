@@ -101,11 +101,18 @@ def train_models(db: Session):
         "metadata": metadata
     }
 
-def get_ai_status():
-    if os.path.exists(METADATA_PATH):
-        with open(METADATA_PATH, 'r') as f:
-            return json.load(f)
-    return {
+def get_ai_status(db: Session = None):
+    status_data = {
         "model_available": False,
         "prediction_mode": "rule_based"
     }
+    if os.path.exists(METADATA_PATH):
+        with open(METADATA_PATH, 'r') as f:
+            status_data = json.load(f)
+            
+    if db:
+        completed_count = db.query(Production).filter(Production.status == 'Completed').count()
+        status_data['completed_records_count'] = completed_count
+        
+    return status_data
+

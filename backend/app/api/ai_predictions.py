@@ -12,8 +12,8 @@ from typing import List
 router = APIRouter()
 
 @router.get("/status", response_model=AIStatusResponse)
-def status():
-    return get_ai_status()
+def status(db: Session = Depends(get_db)):
+    return get_ai_status(db)
 
 @router.post("/train")
 def train(db: Session = Depends(get_db)):
@@ -90,3 +90,4 @@ def get_order_prediction(order_id: int, db: Session = Depends(get_db)):
 def get_prediction_history(production_id: int, db: Session = Depends(get_db)):
     history = db.query(PredictionHistory).filter(PredictionHistory.production_id == production_id).order_by(PredictionHistory.created_at.desc()).all()
     return history
+
