@@ -132,9 +132,9 @@ export default function Workers() {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold text-gray-800">Worker Management</h1>
-        <div className="flex space-x-3">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0 mb-6">
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">Worker Management</h1>
+        <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3 w-full sm:w-auto">
           <button 
             onClick={() => setIsImportModalOpen(true)}
             className="bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded border border-gray-300 shadow transition"
@@ -143,7 +143,7 @@ export default function Workers() {
           </button>
           <button 
             onClick={openAddModal}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded shadow transition"
+            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded shadow transition w-full sm:w-auto"
           >
             + Add Worker
           </button>
@@ -172,7 +172,7 @@ export default function Workers() {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
           <select 
-            className="border rounded px-3 py-2"
+            className="border rounded px-3 py-2 w-full sm:w-auto"
             value={departmentFilter}
             onChange={(e) => setDepartmentFilter(e.target.value)}
           >
@@ -187,7 +187,7 @@ export default function Workers() {
             <option value="Administration">Administration</option>
           </select>
           <select 
-            className="border rounded px-3 py-2"
+            className="border rounded px-3 py-2 w-full sm:w-auto"
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
           >
@@ -201,7 +201,7 @@ export default function Workers() {
 
       <div className="bg-white rounded-lg shadow overflow-hidden flex-1 flex flex-col">
         <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse">
+          <table className="min-w-max w-full text-left border-collapse">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
                 <th className="px-4 py-3 font-semibold text-gray-700 text-sm">Employee ID</th>
@@ -264,7 +264,7 @@ export default function Workers() {
               <h2 className="text-xl font-bold">{editingWorker ? 'Edit Worker' : 'Add New Worker'}</h2>
             </div>
             <form onSubmit={handleSubmit} className="p-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Employee ID *</label>
                   <input required name="employee_id" type="text" value={formData.employee_id} onChange={handleInputChange} className="w-full border rounded px-3 py-2" />
@@ -275,7 +275,7 @@ export default function Workers() {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Department *</label>
-                  <select required name="department" value={formData.department} onChange={handleInputChange} className="w-full border rounded px-3 py-2">
+                  <select required name="department" value={formData.department} onChange={handleInputChange} className="w-full border rounded px-3 py-2 w-full sm:w-auto">
                     <option value="">Select Department</option>
                     <option value="Cutting">Cutting</option>
                     <option value="Stitching">Stitching</option>
@@ -301,7 +301,7 @@ export default function Workers() {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Shift</label>
-                  <select name="shift" value={formData.shift} onChange={handleInputChange} className="w-full border rounded px-3 py-2">
+                  <select name="shift" value={formData.shift} onChange={handleInputChange} className="w-full border rounded px-3 py-2 w-full sm:w-auto">
                     <option value="">Select Shift</option>
                     <option value="Morning">Morning</option>
                     <option value="Evening">Evening</option>
@@ -314,7 +314,7 @@ export default function Workers() {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
-                  <select name="status" value={formData.status} onChange={handleInputChange} className="w-full border rounded px-3 py-2">
+                  <select name="status" value={formData.status} onChange={handleInputChange} className="w-full border rounded px-3 py-2 w-full sm:w-auto">
                     <option value="Active">Active</option>
                     <option value="Inactive">Inactive</option>
                     <option value="On Leave">On Leave</option>
@@ -324,7 +324,7 @@ export default function Workers() {
               
               <div className="mt-8 flex justify-end gap-3 border-t pt-4">
                 <button type="button" onClick={() => setIsModalOpen(false)} className="px-4 py-2 border rounded text-gray-700 hover:bg-gray-50">Cancel</button>
-                <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 w-full sm:w-auto">
                   {editingWorker ? 'Update Worker' : 'Add Worker'}
                 </button>
               </div>
@@ -342,7 +342,7 @@ export default function Workers() {
               <button onClick={() => setIsViewModalOpen(false)} className="text-gray-500 hover:text-gray-700 font-bold">&times;</button>
             </div>
             <div className="p-6">
-              <div className="grid grid-cols-2 gap-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4">
                 <div className="text-gray-500 text-sm">Employee ID</div>
                 <div className="font-medium">{viewingWorker.employee_id}</div>
                 

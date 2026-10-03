@@ -60,8 +60,8 @@ export default function Analytics() {
 
   return (
     <div className="flex flex-col h-full overflow-y-auto">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold text-gray-800">Factory Analytics</h1>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0 mb-6">
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">Factory Analytics</h1>
         <select value={dateFilter} onChange={e => setDateFilter(e.target.value)} className="border rounded px-3 py-1 text-sm bg-white shadow-sm">
           <option value="last7">Last 7 Days</option>
           <option value="last30">Last 30 Days</option>
@@ -87,7 +87,7 @@ export default function Analytics() {
       ) : (
         <div className="flex-1">
           {activeTab === 'workforce' && workforce && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="bg-white rounded-lg shadow p-4">
                 <h3 className="font-bold mb-4">Attendance Trend</h3>
                 <div className="h-64">
@@ -129,7 +129,7 @@ export default function Analytics() {
           )}
 
           {activeTab === 'machines' && machines && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="bg-white rounded-lg shadow p-4">
                 <h3 className="font-bold mb-4">Machine Status Distribution</h3>
                 <div className="h-64">
@@ -162,7 +162,7 @@ export default function Analytics() {
           )}
 
           {activeTab === 'orders' && orders && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="bg-white rounded-lg shadow p-4">
                 <h3 className="font-bold mb-4">Order Status Distribution</h3>
                 <div className="h-64">
@@ -200,7 +200,7 @@ export default function Analytics() {
           )}
 
           {activeTab === 'production' && production && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="bg-white rounded-lg shadow p-4 md:col-span-2">
                 <h3 className="font-bold mb-4">Daily Production Trend</h3>
                 <div className="h-64">
@@ -225,7 +225,7 @@ export default function Analytics() {
                   <span className="text-red-600 text-sm">Overall Rejection Rate: {production.overall_rejection_rate}%</span>
                 </h3>
                 <div className="overflow-x-auto">
-                  <table className="w-full text-left text-sm border">
+                  <table className="min-w-max w-full text-left text-sm border">
                     <thead className="bg-gray-100">
                       <tr>
                         <th className="p-2">Department</th>

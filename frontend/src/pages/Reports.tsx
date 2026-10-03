@@ -67,8 +67,8 @@ export default function Reports() {
 
   return (
     <div className="flex flex-col h-full overflow-y-auto">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold text-gray-800">Factory Reports</h1>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0 mb-6">
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">Factory Reports</h1>
       </div>
 
       <div className="bg-white rounded-lg shadow p-6 mb-6">
@@ -106,12 +106,12 @@ export default function Reports() {
 
       {reportData && (
         <div className="bg-white rounded-lg shadow flex flex-col flex-1">
-          <div className="px-6 py-4 border-b flex justify-between items-center bg-gray-50">
+          <div className="px-6 py-4 border-b flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-gray-50">
             <div>
               <h2 className="text-lg font-bold text-gray-800">{reportData.report_type}</h2>
               <p className="text-xs text-gray-500">Date Range: {reportData.date_range} | Generated: {new Date(reportData.generated_at).toLocaleString()}</p>
             </div>
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full sm:w-auto">
               <button onClick={handleExportCSV} className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded text-sm font-bold shadow transition">Export CSV</button>
               <button onClick={handleExportPDF} className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded text-sm font-bold shadow transition">Export PDF</button>
             </div>
@@ -120,7 +120,7 @@ export default function Reports() {
           <div className="p-6 flex-1 overflow-y-auto">
             {reportType === 'factory_summary' && (
               <div className="max-w-2xl mx-auto overflow-x-auto">
-                <table className="w-full border text-left text-sm">
+                <table className="min-w-max w-full border text-left text-sm">
                   <thead className="bg-gray-100">
                     <tr>
                       <th className="p-3 border-b">Metric</th>
@@ -144,4 +144,5 @@ export default function Reports() {
     </div>
   );
 }
+
 

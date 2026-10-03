@@ -51,7 +51,7 @@ const WorkerDashboard = () => {
         <p className="text-gray-500 mt-1">Welcome back, {profile?.name || authService.getCurrentUser()?.username}</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         {/* Card 1: Today's Attendance */}
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
           <div className="flex items-center text-sm font-medium text-gray-500 mb-4">
@@ -111,7 +111,7 @@ const WorkerDashboard = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Current Production */}
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <div className="flex justify-between items-center mb-6">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0 mb-6">
             <h2 className="text-xl font-bold text-gray-900">My Current Production</h2>
             <Link to="/my-production" className="text-sm text-indigo-600 hover:text-indigo-900 font-medium">View All &rarr;</Link>
           </div>
@@ -141,7 +141,7 @@ const WorkerDashboard = () => {
                 <div className="bg-indigo-600 h-2.5 rounded-full" style={{ width: `${currentProd.progress_percentage}%` }}></div>
               </div>
 
-              <div className="grid grid-cols-2 gap-y-4 gap-x-4 border-t border-gray-100 pt-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-4 border-t border-gray-100 pt-4">
                 <div>
                   <span className="block text-xs text-gray-500">Target Quantity</span>
                   <span className="block text-sm font-medium">{currentProd.target_quantity}</span>
@@ -169,7 +169,7 @@ const WorkerDashboard = () => {
 
         {/* Machine Assignment */}
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <div className="flex justify-between items-center mb-6">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0 mb-6">
             <h2 className="text-xl font-bold text-gray-900">My Machine Assignment</h2>
             <Link to="/worker-profile" className="text-sm text-indigo-600 hover:text-indigo-900 font-medium">View Details &rarr;</Link>
           </div>

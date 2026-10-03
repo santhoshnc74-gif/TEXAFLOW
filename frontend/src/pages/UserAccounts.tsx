@@ -81,11 +81,11 @@ const UserAccounts = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="flex justify-between items-center py-6">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 py-6">
         <h1 className="text-2xl font-semibold text-gray-900">User Accounts</h1>
         <button
           onClick={() => setShowForm(!showForm)}
-          className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700"
+          className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 w-full sm:w-auto"
         >
           {showForm ? 'Cancel' : 'Create Worker Login'}
         </button>
@@ -95,7 +95,7 @@ const UserAccounts = () => {
         <div className="bg-white shadow p-6 rounded-lg mb-6">
           <h2 className="text-lg font-medium mb-4">Create Worker Login</h2>
           <form onSubmit={handleCreate} className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700">Select Worker</label>
                 <select
@@ -206,7 +206,7 @@ const UserAccounts = () => {
               />
               <div className="flex justify-end space-x-3">
                 <button type="button" onClick={() => setShowReset(null)} className="px-4 py-2 border rounded">Cancel</button>
-                <button type="submit" className="px-4 py-2 bg-indigo-600 text-white rounded">Reset</button>
+                <button type="submit" className="px-4 py-2 bg-indigo-600 text-white rounded w-full sm:w-auto">Reset</button>
               </div>
             </form>
           </div>
@@ -217,4 +217,5 @@ const UserAccounts = () => {
 };
 
 export default UserAccounts;
+
 

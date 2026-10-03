@@ -78,7 +78,7 @@ const MyAttendance = () => {
               className="border border-gray-300 rounded-md px-3 py-1.5 text-sm focus:ring-[#1687F8] focus:border-[#1687F8]"
             />
           </div>
-          <button className="bg-[#1687F8] text-white p-2 rounded-md hover:bg-blue-600 transition flex items-center justify-center">
+          <button className="bg-[#1687F8] text-white p-2 rounded-md hover:bg-blue-600 transition flex items-center justify-center w-full sm:w-auto">
             <FiSearch className="h-4 w-4" />
           </button>
         </div>

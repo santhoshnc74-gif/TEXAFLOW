@@ -206,11 +206,11 @@ export default function Machines() {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold text-gray-800">Machine Management</h1>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0 mb-6">
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">Machine Management</h1>
         <button 
           onClick={openAddModal}
-          className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded shadow transition"
+          className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded shadow transition w-full sm:w-auto"
         >
           + Add Machine
         </button>
@@ -265,7 +265,7 @@ export default function Machines() {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
           <select 
-            className="border rounded px-3 py-2"
+            className="border rounded px-3 py-2 w-full sm:w-auto"
             value={filterDepartment}
             onChange={(e) => setFilterDepartment(e.target.value)}
           >
@@ -280,7 +280,7 @@ export default function Machines() {
             <option value="Administration">Administration</option>
           </select>
           <select 
-            className="border rounded px-3 py-2"
+            className="border rounded px-3 py-2 w-full sm:w-auto"
             value={filterStatus}
             onChange={(e) => setFilterStatus(e.target.value)}
           >
@@ -293,7 +293,7 @@ export default function Machines() {
             <option value="Offline">Offline</option>
           </select>
           <select 
-            className="border rounded px-3 py-2"
+            className="border rounded px-3 py-2 w-full sm:w-auto"
             value={filterCondition}
             onChange={(e) => setFilterCondition(e.target.value)}
           >
@@ -308,7 +308,7 @@ export default function Machines() {
 
       <div className="bg-white rounded-lg shadow overflow-hidden flex-1 flex flex-col">
         <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse">
+          <table className="min-w-max w-full text-left border-collapse">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
                 <th className="px-4 py-3 font-semibold text-gray-700 text-sm">Code</th>
@@ -380,7 +380,7 @@ export default function Machines() {
               <h2 className="text-xl font-bold">{editingMachine ? 'Edit Machine' : 'Add New Machine'}</h2>
             </div>
             <form onSubmit={handleSubmit} className="p-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Machine Code *</label>
                   <input required name="machine_code" type="text" value={formData.machine_code} onChange={handleInputChange} className="w-full border rounded px-3 py-2" />
@@ -395,7 +395,7 @@ export default function Machines() {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Department *</label>
-                  <select required name="department" value={formData.department} onChange={handleInputChange} className="w-full border rounded px-3 py-2">
+                  <select required name="department" value={formData.department} onChange={handleInputChange} className="w-full border rounded px-3 py-2 w-full sm:w-auto">
                     <option value="">Select Department</option>
                     <option value="Cutting">Cutting</option>
                     <option value="Stitching">Stitching</option>
@@ -421,7 +421,7 @@ export default function Machines() {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
-                  <select name="status" value={formData.status} onChange={handleInputChange} className="w-full border rounded px-3 py-2">
+                  <select name="status" value={formData.status} onChange={handleInputChange} className="w-full border rounded px-3 py-2 w-full sm:w-auto">
                     <option value="Available">Available</option>
                     <option value="Running">Running</option>
                     <option value="Idle">Idle</option>
@@ -432,7 +432,7 @@ export default function Machines() {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Condition</label>
-                  <select name="condition" value={formData.condition} onChange={handleInputChange} className="w-full border rounded px-3 py-2">
+                  <select name="condition" value={formData.condition} onChange={handleInputChange} className="w-full border rounded px-3 py-2 w-full sm:w-auto">
                     <option value="Excellent">Excellent</option>
                     <option value="Good">Good</option>
                     <option value="Needs Service">Needs Service</option>
@@ -441,7 +441,7 @@ export default function Machines() {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Current Operator</label>
-                  <select name="current_operator_id" value={formData.current_operator_id || 0} onChange={handleInputChange} className="w-full border rounded px-3 py-2">
+                  <select name="current_operator_id" value={formData.current_operator_id || 0} onChange={handleInputChange} className="w-full border rounded px-3 py-2 w-full sm:w-auto">
                     <option value={0}>No Operator Assigned</option>
                     {workers.map(w => (
                       <option key={w.id} value={w.id}>{w.employee_id} - {w.name}</option>
@@ -464,7 +464,7 @@ export default function Machines() {
               
               <div className="mt-8 flex justify-end gap-3 border-t pt-4">
                 <button type="button" onClick={() => setIsModalOpen(false)} className="px-4 py-2 border rounded text-gray-700 hover:bg-gray-50">Cancel</button>
-                <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 w-full sm:w-auto">
                   {editingMachine ? 'Update Machine' : 'Save Machine'}
                 </button>
               </div>
@@ -485,7 +485,7 @@ export default function Machines() {
               <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">New Status *</label>
-                  <select required name="status" value={statusFormData.status} onChange={handleStatusInputChange} className="w-full border rounded px-3 py-2">
+                  <select required name="status" value={statusFormData.status} onChange={handleStatusInputChange} className="w-full border rounded px-3 py-2 w-full sm:w-auto">
                     <option value="Available">Available</option>
                     <option value="Running">Running</option>
                     <option value="Idle">Idle</option>

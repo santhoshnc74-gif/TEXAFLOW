@@ -65,8 +65,8 @@ export default function Dashboard() {
 
   return (
     <div className="flex flex-col h-full overflow-y-auto">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold text-gray-800">Manager Dashboard</h1>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0 mb-6">
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">Manager Dashboard</h1>
         <div className="flex items-center gap-4">
           <div className="flex items-center">
             <div className={`w-3 h-3 rounded-full mr-2 ${
@@ -112,7 +112,7 @@ export default function Dashboard() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
             <div className="bg-white rounded-lg shadow p-6">
               <h3 className="font-bold text-gray-800 mb-4 border-b pb-2">Workforce & Attendance Today</h3>
               <div className="flex justify-between mb-2">

@@ -216,11 +216,11 @@ export default function Orders() {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold text-gray-800">Order Management</h1>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0 mb-6">
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">Order Management</h1>
         <button 
           onClick={openAddModal}
-          className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded shadow transition"
+          className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded shadow transition w-full sm:w-auto"
         >
           + Create Order
         </button>
@@ -275,7 +275,7 @@ export default function Orders() {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
           <select 
-            className="border rounded px-3 py-2"
+            className="border rounded px-3 py-2 w-full sm:w-auto"
             value={filterCustomerId}
             onChange={(e) => setFilterCustomerId(e.target.value)}
           >
@@ -283,7 +283,7 @@ export default function Orders() {
             {customers.map(c => <option key={c.id} value={c.id}>{c.customer_name}</option>)}
           </select>
           <select 
-            className="border rounded px-3 py-2"
+            className="border rounded px-3 py-2 w-full sm:w-auto"
             value={filterStatus}
             onChange={(e) => setFilterStatus(e.target.value)}
           >
@@ -299,7 +299,7 @@ export default function Orders() {
             <option value="Cancelled">Cancelled</option>
           </select>
           <select 
-            className="border rounded px-3 py-2"
+            className="border rounded px-3 py-2 w-full sm:w-auto"
             value={filterPriority}
             onChange={(e) => setFilterPriority(e.target.value)}
           >
@@ -310,7 +310,7 @@ export default function Orders() {
             <option value="Urgent">Urgent</option>
           </select>
           <select 
-            className="border rounded px-3 py-2"
+            className="border rounded px-3 py-2 w-full sm:w-auto"
             value={filterDelivery}
             onChange={(e) => setFilterDelivery(e.target.value)}
           >
@@ -324,7 +324,7 @@ export default function Orders() {
 
       <div className="bg-white rounded-lg shadow overflow-hidden flex-1 flex flex-col">
         <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse">
+          <table className="min-w-max w-full text-left border-collapse">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
                 <th className="px-4 py-3 font-semibold text-gray-700 text-sm">Order No</th>
@@ -407,7 +407,7 @@ export default function Orders() {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Customer *</label>
-                  <select required name="customer_id" value={formData.customer_id} onChange={handleInputChange} className="w-full border rounded px-3 py-2">
+                  <select required name="customer_id" value={formData.customer_id} onChange={handleInputChange} className="w-full border rounded px-3 py-2 w-full sm:w-auto">
                     <option value={0}>Select Customer</option>
                     {customers.map(c => <option key={c.id} value={c.id}>{c.customer_code} - {c.customer_name}</option>)}
                   </select>
@@ -454,7 +454,7 @@ export default function Orders() {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Priority</label>
-                  <select name="priority" value={formData.priority} onChange={handleInputChange} className="w-full border rounded px-3 py-2">
+                  <select name="priority" value={formData.priority} onChange={handleInputChange} className="w-full border rounded px-3 py-2 w-full sm:w-auto">
                     <option value="Low">Low</option>
                     <option value="Normal">Normal</option>
                     <option value="High">High</option>
@@ -463,7 +463,7 @@ export default function Orders() {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
-                  <select name="status" value={formData.status} onChange={handleInputChange} className="w-full border rounded px-3 py-2">
+                  <select name="status" value={formData.status} onChange={handleInputChange} className="w-full border rounded px-3 py-2 w-full sm:w-auto">
                     <option value="Pending">Pending</option>
                     <option value="Confirmed">Confirmed</option>
                     <option value="In Production">In Production</option>
@@ -483,7 +483,7 @@ export default function Orders() {
               
               <div className="mt-8 flex justify-end gap-3 border-t pt-4">
                 <button type="button" onClick={() => setIsModalOpen(false)} className="px-4 py-2 border rounded text-gray-700 hover:bg-gray-50">Cancel</button>
-                <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 w-full sm:w-auto">
                   {editingOrder ? 'Update Order' : 'Create Order'}
                 </button>
               </div>
@@ -504,7 +504,7 @@ export default function Orders() {
               <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">New Status *</label>
-                  <select required name="status" value={statusFormData.status} onChange={handleStatusInputChange} className="w-full border rounded px-3 py-2">
+                  <select required name="status" value={statusFormData.status} onChange={handleStatusInputChange} className="w-full border rounded px-3 py-2 w-full sm:w-auto">
                     <option value="Pending">Pending</option>
                     <option value="Confirmed">Confirmed</option>
                     <option value="In Production">In Production</option>
@@ -543,7 +543,7 @@ export default function Orders() {
             </div>
             
             <div className="p-6">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-y-4 gap-x-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-4 gap-x-6">
                 <div className="text-gray-500 text-sm">Customer</div>
                 <div className="font-semibold">{viewingOrder.customer_name} ({viewingOrder.customer_code})</div>
                 
@@ -563,10 +563,10 @@ export default function Orders() {
                 <div className="font-medium">{viewingOrder.color || '-'}</div>
 
                 <div className="text-gray-500 text-sm">Size Details</div>
-                <div className="font-medium col-span-3">{viewingOrder.size_details || '-'}</div>
+                <div className="font-medium col-span-1 lg:col-span-3">{viewingOrder.size_details || '-'}</div>
 
                 <div className="text-gray-500 text-sm mt-4 font-bold">Quantity Information</div>
-                <div className="col-span-3"></div>
+                <div className="col-span-1 lg:col-span-3"></div>
 
                 <div className="text-gray-500 text-sm">Total Quantity</div>
                 <div className="font-bold text-lg">{viewingOrder.quantity}</div>
@@ -575,7 +575,7 @@ export default function Orders() {
                 <div className="font-bold text-lg text-blue-600">{viewingOrder.completed_quantity}</div>
 
                 <div className="text-gray-500 text-sm">Progress</div>
-                <div className="col-span-3 flex items-center gap-2">
+                <div className="col-span-1 lg:col-span-3 flex items-center gap-2">
                   <div className="w-full max-w-xs bg-gray-200 rounded-full h-3">
                     <div className="bg-blue-600 h-3 rounded-full" style={{ width: `${viewingOrder.progress_percentage}%` }}></div>
                   </div>
@@ -583,7 +583,7 @@ export default function Orders() {
                 </div>
 
                 <div className="text-gray-500 text-sm mt-4 font-bold">Scheduling</div>
-                <div className="col-span-3"></div>
+                <div className="col-span-1 lg:col-span-3"></div>
 
                 <div className="text-gray-500 text-sm">Order Date</div>
                 <div className="font-medium">{viewingOrder.order_date}</div>
@@ -594,10 +594,10 @@ export default function Orders() {
                 <div className="text-gray-500 text-sm">Actual Delivery</div>
                 <div className="font-medium">{viewingOrder.actual_delivery_date || '-'}</div>
                 
-                <div className="col-span-2"></div>
+                <div className="col-span-1 lg:col-span-2"></div>
 
                 <div className="text-gray-500 text-sm mt-4 font-bold">Status & Pricing</div>
-                <div className="col-span-3"></div>
+                <div className="col-span-1 lg:col-span-3"></div>
 
                 <div className="text-gray-500 text-sm">Priority</div>
                 <div>{getPriorityBadge(viewingOrder.priority || '')}</div>
@@ -611,8 +611,8 @@ export default function Orders() {
                 <div className="text-gray-500 text-sm">Total Amount</div>
                 <div className="font-bold text-green-700">{viewingOrder.total_amount ? `$${viewingOrder.total_amount}` : '-'}</div>
 
-                <div className="text-gray-500 text-sm col-span-4 mt-2">Notes</div>
-                <div className="font-medium col-span-4 bg-gray-50 p-3 rounded text-sm">{viewingOrder.notes || '-'}</div>
+                <div className="text-gray-500 text-sm col-span-1 sm:col-span-2 lg:col-span-4 mt-2">Notes</div>
+                <div className="font-medium col-span-1 sm:col-span-2 lg:col-span-4 bg-gray-50 p-3 rounded text-sm">{viewingOrder.notes || '-'}</div>
               </div>
             </div>
 
@@ -625,3 +625,4 @@ export default function Orders() {
     </div>
   );
 }
+

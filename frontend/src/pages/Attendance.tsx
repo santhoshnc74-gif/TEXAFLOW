@@ -185,18 +185,18 @@ export default function Attendance() {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold text-gray-800">Attendance Management</h1>
-        <div className="flex gap-2">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0 mb-6">
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">Attendance Management</h1>
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full sm:w-auto">
           <button 
             onClick={openBulkModal}
-            className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded shadow transition"
+            className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded shadow transition w-full sm:w-auto"
           >
             Mark Daily Attendance
           </button>
           <button 
             onClick={openAddModal}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded shadow transition"
+            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded shadow transition w-full sm:w-auto"
           >
             + Mark Attendance
           </button>
@@ -216,7 +216,7 @@ export default function Attendance() {
       )}
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-6">
         <div className="bg-white rounded-lg shadow p-4 border-t-4 border-t-gray-500">
           <h2 className="text-sm font-semibold text-gray-600 mb-1">Total Workers</h2>
           <div className="text-2xl font-bold">{workers.length}</div>
@@ -255,7 +255,7 @@ export default function Attendance() {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
           <select 
-            className="border rounded px-3 py-2"
+            className="border rounded px-3 py-2 w-full sm:w-auto"
             value={filterWorker}
             onChange={(e) => setFilterWorker(e.target.value)}
           >
@@ -265,7 +265,7 @@ export default function Attendance() {
             ))}
           </select>
           <select 
-            className="border rounded px-3 py-2"
+            className="border rounded px-3 py-2 w-full sm:w-auto"
             value={filterStatus}
             onChange={(e) => setFilterStatus(e.target.value)}
           >
@@ -280,7 +280,7 @@ export default function Attendance() {
 
       <div className="bg-white rounded-lg shadow overflow-hidden flex-1 flex flex-col">
         <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse">
+          <table className="min-w-max w-full text-left border-collapse">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
                 <th className="px-4 py-3 font-semibold text-gray-700 text-sm">Employee ID</th>
@@ -343,7 +343,7 @@ export default function Attendance() {
               <h2 className="text-xl font-bold">{editingRecord ? 'Edit Attendance' : 'Mark Attendance'}</h2>
             </div>
             <form onSubmit={handleSubmit} className="p-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Worker *</label>
                   <select 
@@ -352,7 +352,7 @@ export default function Attendance() {
                     value={formData.worker_id} 
                     onChange={handleInputChange} 
                     disabled={!!editingRecord}
-                    className="w-full border rounded px-3 py-2 disabled:bg-gray-100"
+                    className="w-full border rounded px-3 py-2 disabled:bg-gray-100 w-full sm:w-auto"
                   >
                     <option value={0}>Select Worker</option>
                     {workers.map(w => (
@@ -366,7 +366,7 @@ export default function Attendance() {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Status *</label>
-                  <select required name="status" value={formData.status} onChange={handleInputChange} className="w-full border rounded px-3 py-2">
+                  <select required name="status" value={formData.status} onChange={handleInputChange} className="w-full border rounded px-3 py-2 w-full sm:w-auto">
                     <option value="Present">Present</option>
                     <option value="Absent">Absent</option>
                     <option value="On Leave">On Leave</option>
@@ -375,7 +375,7 @@ export default function Attendance() {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Shift</label>
-                  <select name="shift" value={formData.shift} onChange={handleInputChange} className="w-full border rounded px-3 py-2">
+                  <select name="shift" value={formData.shift} onChange={handleInputChange} className="w-full border rounded px-3 py-2 w-full sm:w-auto">
                     <option value="">Select Shift</option>
                     <option value="Morning">Morning</option>
                     <option value="Evening">Evening</option>
@@ -402,7 +402,7 @@ export default function Attendance() {
               
               <div className="mt-8 flex justify-end gap-3 border-t pt-4">
                 <button type="button" onClick={() => setIsModalOpen(false)} className="px-4 py-2 border rounded text-gray-700 hover:bg-gray-50">Cancel</button>
-                <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 w-full sm:w-auto">
                   {editingRecord ? 'Update' : 'Save'}
                 </button>
               </div>
@@ -420,7 +420,7 @@ export default function Attendance() {
               <button onClick={() => setIsBulkModalOpen(false)} className="text-gray-500 font-bold">&times;</button>
             </div>
             <div className="p-6 overflow-y-auto flex-1">
-              <table className="w-full text-left">
+              <table className="min-w-max w-full text-left">
                 <thead className="bg-gray-50">
                   <tr>
                     <th className="px-4 py-2 text-sm font-semibold text-gray-600">Employee ID</th>
@@ -477,7 +477,7 @@ export default function Attendance() {
               <button onClick={() => setIsViewModalOpen(false)} className="text-gray-500 hover:text-gray-700 font-bold">&times;</button>
             </div>
             <div className="p-6">
-              <div className="grid grid-cols-2 gap-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4">
                 <div className="text-gray-500 text-sm">Employee ID</div>
                 <div className="font-medium">{viewingRecord.employee_id}</div>
                 
@@ -518,3 +518,4 @@ export default function Attendance() {
     </div>
   );
 }
+

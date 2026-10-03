@@ -108,11 +108,11 @@ export default function Customers() {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold text-gray-800">Customer Management</h1>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0 mb-6">
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">Customer Management</h1>
         <button 
           onClick={openAddModal}
-          className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded shadow transition"
+          className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded shadow transition w-full sm:w-auto"
         >
           + Add Customer
         </button>
@@ -144,7 +144,7 @@ export default function Customers() {
 
       <div className="bg-white rounded-lg shadow overflow-hidden flex-1 flex flex-col">
         <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse">
+          <table className="min-w-max w-full text-left border-collapse">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
                 <th className="px-4 py-3 font-semibold text-gray-700 text-sm">Code</th>
@@ -203,7 +203,7 @@ export default function Customers() {
               <h2 className="text-xl font-bold">{editingCustomer ? 'Edit Customer' : 'Add New Customer'}</h2>
             </div>
             <form onSubmit={handleSubmit} className="p-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Customer Code *</label>
                   <input required name="customer_code" type="text" value={formData.customer_code} onChange={handleInputChange} className="w-full border rounded px-3 py-2" />
@@ -248,7 +248,7 @@ export default function Customers() {
               
               <div className="mt-8 flex justify-end gap-3 border-t pt-4">
                 <button type="button" onClick={() => setIsModalOpen(false)} className="px-4 py-2 border rounded text-gray-700 hover:bg-gray-50">Cancel</button>
-                <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 w-full sm:w-auto">
                   {editingCustomer ? 'Update Customer' : 'Save Customer'}
                 </button>
               </div>
@@ -267,7 +267,7 @@ export default function Customers() {
             </div>
             
             <div className="p-6">
-              <div className="grid grid-cols-2 gap-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4">
                 <div className="text-gray-500 text-sm">Customer Name</div>
                 <div className="font-semibold">{viewingCustomer.customer_name}</div>
                 

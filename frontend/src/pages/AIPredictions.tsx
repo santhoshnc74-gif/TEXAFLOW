@@ -89,12 +89,12 @@ export default function AIPredictions() {
 
   return (
     <div className="flex flex-col h-full overflow-y-auto">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold text-gray-800">AI Production Prediction</h1>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0 mb-6">
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">AI Production Prediction</h1>
         <button 
           onClick={handleTrain} 
           disabled={training}
-          className={`px-4 py-2 rounded text-white font-semibold shadow transition ${training ? 'bg-gray-400' : 'bg-purple-600 hover:bg-purple-700'}`}
+          className={`w-full sm:w-auto px-4 py-2 rounded text-white font-semibold shadow transition ${training ? 'bg-gray-400' : 'bg-purple-600 hover:bg-purple-700'}`}
         >
           {training ? 'Training...' : 'Train ML Model'}
         </button>
@@ -138,11 +138,11 @@ export default function AIPredictions() {
       {/* Predictor */}
       <div className="bg-white rounded-lg shadow p-6 mb-6">
         <h2 className="text-xl font-bold mb-4">Generate Prediction</h2>
-        <div className="flex gap-4">
+        <div className="flex flex-col sm:flex-row gap-4">
           <select 
             value={selectedProdId} 
             onChange={(e) => setSelectedProdId(e.target.value ? parseInt(e.target.value) : '')}
-            className="flex-1 border rounded px-3 py-2"
+            className="flex-1 w-full border rounded px-3 py-2"
           >
             <option value="">Select an active production plan...</option>
             {productions.map(p => (
@@ -154,7 +154,7 @@ export default function AIPredictions() {
           <button 
             onClick={handlePredict}
             disabled={!selectedProdId || loading}
-            className={`px-6 py-2 rounded text-white font-bold transition ${!selectedProdId || loading ? 'bg-blue-300' : 'bg-blue-600 hover:bg-blue-700'}`}
+            className={`w-full sm:w-auto px-6 py-2 rounded text-white font-bold transition ${!selectedProdId || loading ? 'bg-blue-300' : 'bg-blue-600 hover:bg-blue-700'}`}
           >
             {loading ? 'Predicting...' : 'Predict'}
           </button>
@@ -221,7 +221,7 @@ export default function AIPredictions() {
               </div>
               <div className="border-t pt-4">
                 <div className="text-sm text-gray-500">Estimated Days Remaining</div>
-                <div className="text-2xl font-bold text-gray-800">{prediction.predicted_remaining_days} days</div>
+                <div className="text-xl sm:text-2xl font-bold text-gray-800">{prediction.predicted_remaining_days} days</div>
               </div>
             </div>
           </div>
@@ -272,7 +272,7 @@ export default function AIPredictions() {
         <div className="bg-white rounded-lg shadow p-6">
           <h3 className="font-bold text-lg mb-4">Prediction History for {prediction?.production_code}</h3>
           <div className="overflow-x-auto">
-            <table className="w-full text-left text-sm">
+            <table className="min-w-max w-full text-left text-sm">
               <thead className="bg-gray-50 border-b">
                 <tr>
                   <th className="p-2">Date Generated</th>
@@ -302,3 +302,6 @@ export default function AIPredictions() {
     </div>
   );
 }
+
+
+

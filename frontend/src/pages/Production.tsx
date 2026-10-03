@@ -150,16 +150,16 @@ export default function ProductionPage() {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold text-gray-800">Production Management</h1>
-        <button onClick={() => setIsCreateModalOpen(true)} className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded shadow transition">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0 mb-6">
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">Production Management</h1>
+        <button onClick={() => setIsCreateModalOpen(true)} className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded shadow transition w-full sm:w-auto">
           + Create Production Plan
         </button>
       </div>
 
       <div className="bg-white rounded-lg shadow overflow-hidden flex-1 flex flex-col">
         <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse">
+          <table className="min-w-max w-full text-left border-collapse">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
                 <th className="px-4 py-3 font-semibold text-gray-700 text-sm">Prod Code</th>
@@ -224,7 +224,7 @@ export default function ProductionPage() {
               </div>
               <div>
                 <label className="block text-sm font-medium mb-1">Order *</label>
-                <select required name="order_id" onChange={handleInputChange} className="w-full border rounded px-3 py-2">
+                <select required name="order_id" onChange={handleInputChange} className="w-full border rounded px-3 py-2 w-full sm:w-auto">
                   <option value="">Select Order</option>
                   {orders.map(o => <option key={o.id} value={o.id}>{o.order_number} - {o.customer_name} ({o.quantity})</option>)}
                 </select>
@@ -247,14 +247,14 @@ export default function ProductionPage() {
               </div>
               <div>
                 <label className="block text-sm font-medium mb-1">Supervisor</label>
-                <select name="supervisor_id" onChange={handleInputChange} className="w-full border rounded px-3 py-2">
+                <select name="supervisor_id" onChange={handleInputChange} className="w-full border rounded px-3 py-2 w-full sm:w-auto">
                   <option value="">None</option>
                   {workers.map(w => <option key={w.id} value={w.id}>{w.employee_id} - {w.name}</option>)}
                 </select>
               </div>
               <div className="col-span-2 flex justify-end gap-2 mt-4">
                 <button type="button" onClick={() => setIsCreateModalOpen(false)} className="px-4 py-2 border rounded">Cancel</button>
-                <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded">Create</button>
+                <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded w-full sm:w-auto">Create</button>
               </div>
             </form>
           </div>
@@ -274,7 +274,7 @@ export default function ProductionPage() {
                 </div>
                 <div>
                   <label className="block text-sm mb-1">Stage</label>
-                  <select name="stage_id" value={updateFormData.stage_id} onChange={handleUpdateChange} className="w-full border rounded px-3 py-2">
+                  <select name="stage_id" value={updateFormData.stage_id} onChange={handleUpdateChange} className="w-full border rounded px-3 py-2 w-full sm:w-auto">
                     <option value="">Select Stage</option>
                     {productions.find(p => p.id === updateFormData.production_id)?.stages?.map((s: any) => (
                       <option key={s.id} value={s.id}>{s.stage_name}</option>
@@ -291,14 +291,14 @@ export default function ProductionPage() {
                 </div>
                 <div>
                   <label className="block text-sm mb-1">Worker</label>
-                  <select name="worker_id" onChange={handleUpdateChange} className="w-full border rounded px-3 py-2">
+                  <select name="worker_id" onChange={handleUpdateChange} className="w-full border rounded px-3 py-2 w-full sm:w-auto">
                     <option value="">None</option>
                     {workers.map(w => <option key={w.id} value={w.id}>{w.name}</option>)}
                   </select>
                 </div>
                 <div>
                   <label className="block text-sm mb-1">Machine</label>
-                  <select name="machine_id" onChange={handleUpdateChange} className="w-full border rounded px-3 py-2">
+                  <select name="machine_id" onChange={handleUpdateChange} className="w-full border rounded px-3 py-2 w-full sm:w-auto">
                     <option value="">None</option>
                     {machines.filter(m => m.status === 'Running' || m.status === 'Idle').map(m => <option key={m.id} value={m.id}>{m.machine_code}</option>)}
                   </select>
@@ -387,7 +387,7 @@ export default function ProductionPage() {
               </table>
 
               <h3 className="font-bold text-lg mb-2">Daily Updates History</h3>
-              <table className="w-full border">
+              <table className="min-w-max w-full border">
                 <thead className="bg-gray-100">
                   <tr>
                     <th className="p-2 text-left text-sm">Date</th>
