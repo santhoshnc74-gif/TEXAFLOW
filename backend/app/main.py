@@ -20,7 +20,15 @@ app = FastAPI(title="TEXFLOW API")
 # Configure CORS
 origins = [
     "http://localhost:5174",
+    "http://127.0.0.1:5174",
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
 ]
+
+import os
+frontend_url = os.getenv("FRONTEND_URL")
+if frontend_url:
+    origins.append(frontend_url.strip())
 
 app.add_middleware(
     CORSMiddleware,
