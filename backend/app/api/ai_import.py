@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from app.core.database import get_db
 from app.models.production import Production
 from app.models.order import Order
-from app.api.auth import require_admin
+from app.security.security import require_admin
 from pydantic import BaseModel
 from typing import List, Optional
 import pandas as pd
@@ -222,3 +222,4 @@ def confirm_import(req: ConfirmImportRequest, db: Session = Depends(get_db), cur
             pass
             
     return {"status": "success", "imported": imported}
+
