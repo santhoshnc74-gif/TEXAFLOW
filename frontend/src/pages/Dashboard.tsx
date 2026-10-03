@@ -89,7 +89,7 @@ export default function Dashboard() {
       ) : (
         <>
           <h2 className="text-lg font-bold text-gray-800 mb-3 border-b pb-2">Factory Overview</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
             <div className="bg-white rounded-lg shadow p-4 border-t-4 border-blue-500">
               <h3 className="text-sm font-semibold text-gray-600 mb-1">Total Workers</h3>
               <div className="text-3xl font-bold text-blue-600">{summary.workers.total}</div>
@@ -162,3 +162,4 @@ export default function Dashboard() {
     </div>
   );
 }
+

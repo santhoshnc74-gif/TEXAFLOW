@@ -119,7 +119,7 @@ export default function Reports() {
           
           <div className="p-6 flex-1 overflow-y-auto">
             {reportType === 'factory_summary' && (
-              <div className="max-w-2xl mx-auto">
+              <div className="max-w-2xl mx-auto overflow-x-auto">
                 <table className="w-full border text-left text-sm">
                   <thead className="bg-gray-100">
                     <tr>
@@ -144,3 +144,4 @@ export default function Reports() {
     </div>
   );
 }
+
