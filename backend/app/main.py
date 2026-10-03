@@ -17,7 +17,7 @@ from app.api import reports
 
 app = FastAPI(title="TEXFLOW API")
 
-# Configure CORS
+# Configure CORS for local development and production
 origins = [
     "http://localhost:5174",
     "http://127.0.0.1:5174",
