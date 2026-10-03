@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getWorkers, searchWorkers, createWorker, updateWorker, deleteWorker } from '../services/workerService';
 import type { Worker } from '../services/workerService';
+import ImportWorkersModal from '../components/ImportWorkersModal';
 
 export default function Workers() {
   const [workers, setWorkers] = useState<Worker[]>([]);
@@ -15,6 +16,7 @@ export default function Workers() {
   
   // Modal state
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isImportModalOpen, setIsImportModalOpen] = useState(false);
   const [isViewModalOpen, setIsViewModalOpen] = useState(false);
   const [editingWorker, setEditingWorker] = useState<Worker | null>(null);
   const [viewingWorker, setViewingWorker] = useState<Worker | null>(null);
@@ -132,12 +134,20 @@ export default function Workers() {
     <div className="flex flex-col h-full">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold text-gray-800">Worker Management</h1>
-        <button 
-          onClick={openAddModal}
-          className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded shadow transition"
-        >
-          + Add Worker
-        </button>
+        <div className="flex space-x-3">
+          <button 
+            onClick={() => setIsImportModalOpen(true)}
+            className="bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded border border-gray-300 shadow transition"
+          >
+            Import Data
+          </button>
+          <button 
+            onClick={openAddModal}
+            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded shadow transition"
+          >
+            + Add Worker
+          </button>
+        </div>
       </div>
 
       {message && (
@@ -367,6 +377,17 @@ export default function Workers() {
           </div>
         </div>
       )}
+
+      <ImportWorkersModal
+        isOpen={isImportModalOpen}
+        onClose={() => setIsImportModalOpen(false)}
+        onSuccess={() => {
+          setIsImportModalOpen(false);
+          fetchWorkers();
+          setMessage("Workers imported successfully!");
+          setTimeout(() => setMessage(null), 3000);
+        }}
+      />
     </div>
   );
 }

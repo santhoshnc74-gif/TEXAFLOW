@@ -49,3 +49,20 @@ export const searchWorkers = async (q?: string, department?: string, status?: st
   const response = await api.get(`/api/workers/search?${params.toString()}`);
   return response.data;
 };
+
+export const previewWorkersFile = async (file: File) => {
+  const formData = new FormData();
+  formData.append('file', file);
+  const response = await api.post('/api/workers/import/preview-file', formData, { headers: { 'Content-Type': 'multipart/form-data' } });
+  return response.data;
+};
+
+export const previewWorkersUrl = async (url: string) => {
+  const response = await api.post('/api/workers/import/preview-url', { url });
+  return response.data;
+};
+
+export const confirmImportWorkers = async (workers: Worker[]) => {
+  const response = await api.post('/api/workers/import/confirm', workers);
+  return response.data;
+};
