@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { FiLogOut, FiMenu, FiX, FiSearch } from 'react-icons/fi';
 import { authService } from '../services/authService';
@@ -8,9 +8,22 @@ export default function DashboardLayout() {
   const user = authService.getCurrentUser();
   const role = user?.role;
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const workerProfile = user?.worker_profile || user;
+  const [workerProfile, setWorkerProfile] = useState<any>(null);
 
-
+  useEffect(() => {
+    if (role === 'WORKER' && user?.worker_id) {
+      import('../services/workerService').then(module => {
+        return module.getMyProfile();
+      }).then(res => {
+        setWorkerProfile(res);
+      }).catch(err => {
+        console.error(err);
+        setWorkerProfile({ name: user.username, employee_id: 'N/A', department: 'Unknown' });
+      });
+    } else if (role === 'WORKER') {
+      setWorkerProfile({ name: user.username, employee_id: 'N/A', department: 'Unknown' });
+    }
+  }, [role, user]);
 
   const handleLogout = () => {
     authService.logout();
@@ -96,11 +109,11 @@ export default function DashboardLayout() {
             {role === 'WORKER' && workerProfile ? (
               <div className="flex items-center space-x-3 border-r border-slate-200 pr-2 sm:pr-6">
                 <div className="h-9 w-9 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 text-white flex items-center justify-center font-bold text-sm shadow-sm">
-                  {workerProfile.name.substring(0, 2).toUpperCase()}
+                  {workerProfile.name ? workerProfile.name.substring(0, 2).toUpperCase() : 'W'}
                 </div>
                 <div className="text-sm text-right hidden sm:block">
-                  <p className="font-bold text-slate-800">{workerProfile.name}</p>
-                  <p className="text-slate-500 text-xs font-medium">{workerProfile.employee_id} | {workerProfile.department}</p>
+                  <p className="font-bold text-slate-800">{workerProfile.name || user?.username || 'Worker'}</p>
+                  <p className="text-slate-500 text-xs font-medium">{workerProfile.employee_id || 'N/A'} | {workerProfile.department || 'Worker'}</p>
                 </div>
               </div>
             ) : (
