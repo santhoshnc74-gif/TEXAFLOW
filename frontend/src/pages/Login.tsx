@@ -107,7 +107,7 @@ const Login: React.FC = () => {
           
           <div className="text-center mb-10">
             <h2 className="text-3xl font-bold text-[#062B4A]">Account Login</h2>
-            <p className="text-sm text-gray-500 mt-3 px-4">Enter your username and password to access your account</p>
+            <p className="text-sm text-slate-500 mt-3 px-4">Enter your username and password to access your account</p>
           </div>
 
           <form className="space-y-7" onSubmit={handleLogin}>
@@ -118,7 +118,7 @@ const Login: React.FC = () => {
             )}
             
             <div>
-              <label className="block text-sm font-bold text-gray-700 mb-2">Username</label>
+              <label className="block text-sm font-bold text-slate-700 mb-2">Username</label>
               <div className="relative rounded-lg shadow-sm">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                   <FiUser className="h-5 w-5 text-gray-400" />
@@ -128,14 +128,14 @@ const Login: React.FC = () => {
                   required
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  className="focus:ring-2 focus:ring-[#1687F8] focus:border-[#1687F8] block w-full pl-12 sm:text-base border-gray-300 rounded-lg py-3.5 px-4 border outline-none transition-all bg-gray-50 hover:bg-white focus:bg-white"
+                  className="focus:ring-2 focus:ring-[#1687F8] focus:border-[#1687F8] block w-full pl-12 sm:text-base border-slate-300 rounded-lg py-3.5 px-4 border outline-none transition-all bg-slate-50 hover:bg-white focus:bg-white"
                   placeholder="Enter your username"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-bold text-gray-700 mb-2">Password</label>
+              <label className="block text-sm font-bold text-slate-700 mb-2">Password</label>
               <div className="relative rounded-lg shadow-sm">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                   <FiLock className="h-5 w-5 text-gray-400" />
@@ -145,14 +145,14 @@ const Login: React.FC = () => {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="focus:ring-2 focus:ring-[#1687F8] focus:border-[#1687F8] block w-full pl-12 pr-12 sm:text-base border-gray-300 rounded-lg py-3.5 px-4 border outline-none transition-all bg-gray-50 hover:bg-white focus:bg-white"
+                  className="focus:ring-2 focus:ring-[#1687F8] focus:border-[#1687F8] block w-full pl-12 pr-12 sm:text-base border-slate-300 rounded-lg py-3.5 px-4 border outline-none transition-all bg-slate-50 hover:bg-white focus:bg-white"
                   placeholder="Enter your password"
                 />
                 <div className="absolute inset-y-0 right-0 pr-4 flex items-center">
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="text-gray-400 hover:text-gray-600 focus:outline-none transition-colors"
+                    className="text-gray-400 hover:text-slate-600 focus:outline-none transition-colors"
                   >
                     {showPassword ? <FiEyeOff className="h-5 w-5" /> : <FiEye className="h-5 w-5" />}
                   </button>

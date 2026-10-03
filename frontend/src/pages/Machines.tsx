@@ -180,21 +180,21 @@ export default function Machines() {
   };
 
   const getStatusBadge = (status: string) => {
-    if (status === 'Running') return <span className="px-2 py-1 bg-green-100 text-green-800 rounded text-xs font-semibold">Running</span>;
-    if (status === 'Idle') return <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs font-semibold">Idle</span>;
-    if (status === 'Maintenance') return <span className="px-2 py-1 bg-orange-100 text-orange-800 rounded text-xs font-semibold">Maintenance</span>;
-    if (status === 'Breakdown') return <span className="px-2 py-1 bg-red-100 text-red-800 rounded text-xs font-semibold">Breakdown</span>;
-    if (status === 'Available') return <span className="px-2 py-1 bg-teal-100 text-teal-800 rounded text-xs font-semibold">Available</span>;
-    if (status === 'Offline') return <span className="px-2 py-1 bg-gray-100 text-gray-800 rounded text-xs font-semibold">Offline</span>;
-    return <span className="px-2 py-1 bg-gray-100 text-gray-800 rounded text-xs font-semibold">{status}</span>;
+    if (status === 'Running') return <span className="px-2 py-1 bg-green-50 text-green-700 border-green-200 rounded-full text-xs font-bold border">Running</span>;
+    if (status === 'Idle') return <span className="px-2 py-1 bg-blue-50 text-blue-700 border-blue-200 rounded-full text-xs font-bold border">Idle</span>;
+    if (status === 'Maintenance') return <span className="px-2 py-1 bg-orange-50 text-orange-700 border-orange-200 rounded-full text-xs font-bold border">Maintenance</span>;
+    if (status === 'Breakdown') return <span className="px-2 py-1 bg-red-50 text-red-700 border-red-200 rounded-full text-xs font-bold border">Breakdown</span>;
+    if (status === 'Available') return <span className="px-2 py-1 bg-teal-100 text-teal-800 rounded-full text-xs font-bold border">Available</span>;
+    if (status === 'Offline') return <span className="px-2 py-1 bg-slate-50 text-slate-700 border-slate-200 rounded-full text-xs font-bold border">Offline</span>;
+    return <span className="px-2 py-1 bg-slate-50 text-slate-700 border-slate-200 rounded-full text-xs font-bold border">{status}</span>;
   };
 
   const getConditionBadge = (condition: string) => {
-    if (condition === 'Excellent') return <span className="px-2 py-1 bg-green-100 text-green-800 rounded text-xs font-semibold">Excellent</span>;
-    if (condition === 'Good') return <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs font-semibold">Good</span>;
-    if (condition === 'Needs Service') return <span className="px-2 py-1 bg-orange-100 text-orange-800 rounded text-xs font-semibold">Needs Service</span>;
-    if (condition === 'Critical') return <span className="px-2 py-1 bg-red-100 text-red-800 rounded text-xs font-semibold">Critical</span>;
-    return <span className="px-2 py-1 bg-gray-100 text-gray-800 rounded text-xs font-semibold">{condition}</span>;
+    if (condition === 'Excellent') return <span className="px-2 py-1 bg-green-50 text-green-700 border-green-200 rounded-full text-xs font-bold border">Excellent</span>;
+    if (condition === 'Good') return <span className="px-2 py-1 bg-blue-50 text-blue-700 border-blue-200 rounded-full text-xs font-bold border">Good</span>;
+    if (condition === 'Needs Service') return <span className="px-2 py-1 bg-orange-50 text-orange-700 border-orange-200 rounded-full text-xs font-bold border">Needs Service</span>;
+    if (condition === 'Critical') return <span className="px-2 py-1 bg-red-50 text-red-700 border-red-200 rounded-full text-xs font-bold border">Critical</span>;
+    return <span className="px-2 py-1 bg-slate-50 text-slate-700 border-slate-200 rounded-full text-xs font-bold border">{condition}</span>;
   };
 
   // Stats
@@ -207,7 +207,7 @@ export default function Machines() {
   return (
     <div className="flex flex-col h-full">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0 mb-6">
-        <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">Machine Management</h1>
+        <div className="flex flex-col"><h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Machine Inventory</h1><p className="text-sm text-slate-500 mt-1">Track machine status and maintenance.</p></div>
         <button 
           onClick={openAddModal}
           className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded shadow transition w-full sm:w-auto"
@@ -229,33 +229,33 @@ export default function Machines() {
       )}
 
       <div className="grid grid-cols-2 md:grid-cols-6 gap-4 mb-6">
-        <div className="bg-white rounded-lg shadow p-4 border-t-4 border-t-gray-500">
-          <h2 className="text-sm font-semibold text-gray-600 mb-1">Total</h2>
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-4 hover:shadow-md transition-shadow duration-200 border-t-4 border-t-gray-500">
+          <h2 className="text-sm font-semibold text-slate-600 mb-1">Total</h2>
           <div className="text-2xl font-bold">{machines.length}</div>
         </div>
-        <div className="bg-white rounded-lg shadow p-4 border-t-4 border-t-green-500">
-          <h2 className="text-sm font-semibold text-gray-600 mb-1">Running</h2>
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-4 hover:shadow-md transition-shadow duration-200 border-t-4 border-t-green-500">
+          <h2 className="text-sm font-semibold text-slate-600 mb-1">Running</h2>
           <div className="text-2xl font-bold">{running}</div>
         </div>
-        <div className="bg-white rounded-lg shadow p-4 border-t-4 border-t-blue-500">
-          <h2 className="text-sm font-semibold text-gray-600 mb-1">Idle</h2>
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-4 hover:shadow-md transition-shadow duration-200 border-t-4 border-t-blue-500">
+          <h2 className="text-sm font-semibold text-slate-600 mb-1">Idle</h2>
           <div className="text-2xl font-bold">{idle}</div>
         </div>
-        <div className="bg-white rounded-lg shadow p-4 border-t-4 border-t-orange-500">
-          <h2 className="text-sm font-semibold text-gray-600 mb-1">Maintenance</h2>
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-4 hover:shadow-md transition-shadow duration-200 border-t-4 border-t-orange-500">
+          <h2 className="text-sm font-semibold text-slate-600 mb-1">Maintenance</h2>
           <div className="text-2xl font-bold">{maintenance}</div>
         </div>
-        <div className="bg-white rounded-lg shadow p-4 border-t-4 border-t-red-500">
-          <h2 className="text-sm font-semibold text-gray-600 mb-1">Breakdown</h2>
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-4 hover:shadow-md transition-shadow duration-200 border-t-4 border-t-red-500">
+          <h2 className="text-sm font-semibold text-slate-600 mb-1">Breakdown</h2>
           <div className="text-2xl font-bold">{breakdown}</div>
         </div>
-        <div className="bg-white rounded-lg shadow p-4 border-t-4 border-t-gray-300">
-          <h2 className="text-sm font-semibold text-gray-600 mb-1">Offline</h2>
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-4 hover:shadow-md transition-shadow duration-200 border-t-4 border-t-gray-300">
+          <h2 className="text-sm font-semibold text-slate-600 mb-1">Offline</h2>
           <div className="text-2xl font-bold">{offline}</div>
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow border border-gray-200 mb-6 p-4">
+      <div className="bg-white rounded-lg shadow border border-slate-200 mb-6 p-4">
         <div className="flex flex-col md:flex-row gap-4 flex-wrap">
           <input 
             type="text" 
@@ -306,31 +306,31 @@ export default function Machines() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow overflow-hidden flex-1 flex flex-col">
+      <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden flex-1 flex flex-col">
         <div className="overflow-x-auto">
           <table className="min-w-max w-full text-left border-collapse">
-            <thead className="bg-gray-50 border-b border-gray-200">
+            <thead className="bg-slate-50 border-b border-slate-200">
               <tr>
-                <th className="px-4 py-3 font-semibold text-gray-700 text-sm">Code</th>
-                <th className="px-4 py-3 font-semibold text-gray-700 text-sm">Name / Type</th>
-                <th className="px-4 py-3 font-semibold text-gray-700 text-sm">Department</th>
-                <th className="px-4 py-3 font-semibold text-gray-700 text-sm">Operator</th>
-                <th className="px-4 py-3 font-semibold text-gray-700 text-sm">Status</th>
-                <th className="px-4 py-3 font-semibold text-gray-700 text-sm">Condition</th>
-                <th className="px-4 py-3 font-semibold text-gray-700 text-sm">Next Maint.</th>
-                <th className="px-4 py-3 font-semibold text-gray-700 text-sm text-center">Actions</th>
+                <th className="px-4 py-3 font-semibold text-slate-700 text-sm">Code</th>
+                <th className="px-4 py-3 font-semibold text-slate-700 text-sm">Name / Type</th>
+                <th className="px-4 py-3 font-semibold text-slate-700 text-sm">Department</th>
+                <th className="px-4 py-3 font-semibold text-slate-700 text-sm">Operator</th>
+                <th className="px-4 py-3 font-semibold text-slate-700 text-sm">Status</th>
+                <th className="px-4 py-3 font-semibold text-slate-700 text-sm">Condition</th>
+                <th className="px-4 py-3 font-semibold text-slate-700 text-sm">Next Maint.</th>
+                <th className="px-4 py-3 font-semibold text-slate-700 text-sm text-center">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
               {loading ? (
                 <tr>
-                  <td colSpan={8} className="px-4 py-8 text-center text-gray-500">
+                  <td colSpan={8} className="px-4 py-8 text-center text-slate-500">
                     Loading machines...
                   </td>
                 </tr>
               ) : machines.length === 0 ? (
                 <tr>
-                  <td colSpan={8} className="px-4 py-8 text-center text-gray-500">
+                  <td colSpan={8} className="px-4 py-8 text-center text-slate-500">
                     No machines found.
                   </td>
                 </tr>
@@ -339,18 +339,18 @@ export default function Machines() {
                   const today = new Date().toISOString().split('T')[0];
                   const isOverdue = machine.next_maintenance_date && machine.next_maintenance_date < today;
                   return (
-                    <tr key={machine.id} className="hover:bg-gray-50">
+                    <tr key={machine.id} className="hover:bg-slate-50 transition-colors duration-150">
                       <td className="px-4 py-3 text-sm font-medium">{machine.machine_code}</td>
                       <td className="px-4 py-3 text-sm">
                         <div className="font-semibold">{machine.machine_name}</div>
-                        <div className="text-gray-500 text-xs">{machine.machine_type}</div>
+                        <div className="text-slate-500 text-xs">{machine.machine_type}</div>
                       </td>
                       <td className="px-4 py-3 text-sm">{machine.department}</td>
-                      <td className="px-4 py-3 text-sm text-gray-500">{machine.operator_name || 'Unassigned'}</td>
+                      <td className="px-4 py-3 text-sm text-slate-500">{machine.operator_name || 'Unassigned'}</td>
                       <td className="px-4 py-3 text-sm">{getStatusBadge(machine.status)}</td>
                       <td className="px-4 py-3 text-sm">{getConditionBadge(machine.condition)}</td>
                       <td className="px-4 py-3 text-sm">
-                        <span className={isOverdue ? 'text-red-600 font-bold' : 'text-gray-600'}>
+                        <span className={isOverdue ? 'text-red-600 font-bold' : 'text-slate-600'}>
                           {machine.next_maintenance_date || '-'}
                           {isOverdue && ' (Overdue)'}
                         </span>
@@ -358,7 +358,7 @@ export default function Machines() {
                       <td className="px-4 py-3 text-sm text-center">
                         <div className="flex justify-center gap-2">
                           <button onClick={() => openViewModal(machine)} className="text-blue-600 hover:text-blue-800" title="View">View</button>
-                          <button onClick={() => openEditModal(machine)} className="text-gray-600 hover:text-gray-800" title="Edit">Edit</button>
+                          <button onClick={() => openEditModal(machine)} className="text-slate-600 hover:text-slate-800" title="Edit">Edit</button>
                           <button onClick={() => openStatusModal(machine)} className="text-green-600 hover:text-green-800" title="Status">Status</button>
                           <button onClick={() => handleDelete(machine.id!)} className="text-red-600 hover:text-red-800" title="Delete">Delete</button>
                         </div>
@@ -382,19 +382,19 @@ export default function Machines() {
             <form onSubmit={handleSubmit} className="p-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Machine Code *</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Machine Code *</label>
                   <input required name="machine_code" type="text" value={formData.machine_code} onChange={handleInputChange} className="w-full border rounded px-3 py-2" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Machine Name *</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Machine Name *</label>
                   <input required name="machine_name" type="text" value={formData.machine_name} onChange={handleInputChange} className="w-full border rounded px-3 py-2" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Machine Type *</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Machine Type *</label>
                   <input required name="machine_type" type="text" placeholder="e.g. Sewing Machine" value={formData.machine_type} onChange={handleInputChange} className="w-full border rounded px-3 py-2" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Department *</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Department *</label>
                   <select required name="department" value={formData.department} onChange={handleInputChange} className="w-full border rounded px-3 py-2 w-full sm:w-auto">
                     <option value="">Select Department</option>
                     <option value="Cutting">Cutting</option>
@@ -408,19 +408,19 @@ export default function Machines() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Brand</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Brand</label>
                   <input name="brand" type="text" value={formData.brand || ''} onChange={handleInputChange} className="w-full border rounded px-3 py-2" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Model</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Model</label>
                   <input name="model" type="text" value={formData.model || ''} onChange={handleInputChange} className="w-full border rounded px-3 py-2" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Installation Date</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Installation Date</label>
                   <input name="installation_date" type="date" value={formData.installation_date || ''} onChange={handleInputChange} className="w-full border rounded px-3 py-2" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Status</label>
                   <select name="status" value={formData.status} onChange={handleInputChange} className="w-full border rounded px-3 py-2 w-full sm:w-auto">
                     <option value="Available">Available</option>
                     <option value="Running">Running</option>
@@ -431,7 +431,7 @@ export default function Machines() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Condition</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Condition</label>
                   <select name="condition" value={formData.condition} onChange={handleInputChange} className="w-full border rounded px-3 py-2 w-full sm:w-auto">
                     <option value="Excellent">Excellent</option>
                     <option value="Good">Good</option>
@@ -440,7 +440,7 @@ export default function Machines() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Current Operator</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Current Operator</label>
                   <select name="current_operator_id" value={formData.current_operator_id || 0} onChange={handleInputChange} className="w-full border rounded px-3 py-2 w-full sm:w-auto">
                     <option value={0}>No Operator Assigned</option>
                     {workers.map(w => (
@@ -449,21 +449,21 @@ export default function Machines() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Last Maintenance Date</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Last Maintenance Date</label>
                   <input name="last_maintenance_date" type="date" value={formData.last_maintenance_date || ''} onChange={handleInputChange} className="w-full border rounded px-3 py-2" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Next Maintenance Date</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Next Maintenance Date</label>
                   <input name="next_maintenance_date" type="date" value={formData.next_maintenance_date || ''} onChange={handleInputChange} className="w-full border rounded px-3 py-2" />
                 </div>
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Notes</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Notes</label>
                   <textarea name="notes" value={formData.notes || ''} onChange={handleInputChange} className="w-full border rounded px-3 py-2" rows={2}></textarea>
                 </div>
               </div>
               
               <div className="mt-8 flex justify-end gap-3 border-t pt-4">
-                <button type="button" onClick={() => setIsModalOpen(false)} className="px-4 py-2 border rounded text-gray-700 hover:bg-gray-50">Cancel</button>
+                <button type="button" onClick={() => setIsModalOpen(false)} className="px-4 py-2 border rounded text-slate-700 hover:bg-slate-50 transition-colors duration-150">Cancel</button>
                 <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 w-full sm:w-auto">
                   {editingMachine ? 'Update Machine' : 'Save Machine'}
                 </button>
@@ -479,12 +479,12 @@ export default function Machines() {
           <div className="bg-white rounded-lg shadow-xl w-full max-w-md mx-4">
             <div className="px-6 py-4 border-b flex justify-between items-center">
               <h2 className="text-xl font-bold">Update Status</h2>
-              <button onClick={() => setIsStatusModalOpen(false)} className="text-gray-500 hover:text-gray-700 font-bold">&times;</button>
+              <button onClick={() => setIsStatusModalOpen(false)} className="text-slate-500 hover:text-slate-700 font-bold">&times;</button>
             </div>
             <form onSubmit={handleStatusSubmit} className="p-6">
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">New Status *</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">New Status *</label>
                   <select required name="status" value={statusFormData.status} onChange={handleStatusInputChange} className="w-full border rounded px-3 py-2 w-full sm:w-auto">
                     <option value="Available">Available</option>
                     <option value="Running">Running</option>
@@ -495,21 +495,21 @@ export default function Machines() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Reason</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Reason</label>
                   <input name="reason" type="text" value={statusFormData.reason} onChange={handleStatusInputChange} className="w-full border rounded px-3 py-2" placeholder="e.g. Broken needle, Maintenance" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Downtime (Minutes)</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Downtime (Minutes)</label>
                   <input name="downtime_minutes" type="number" min="0" value={statusFormData.downtime_minutes} onChange={handleStatusInputChange} className="w-full border rounded px-3 py-2" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Additional Notes</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Additional Notes</label>
                   <textarea name="notes" value={statusFormData.notes} onChange={handleStatusInputChange} className="w-full border rounded px-3 py-2" rows={2}></textarea>
                 </div>
               </div>
               
               <div className="mt-6 flex justify-end gap-3 border-t pt-4">
-                <button type="button" onClick={() => setIsStatusModalOpen(false)} className="px-4 py-2 border rounded text-gray-700 hover:bg-gray-50">Cancel</button>
+                <button type="button" onClick={() => setIsStatusModalOpen(false)} className="px-4 py-2 border rounded text-slate-700 hover:bg-slate-50 transition-colors duration-150">Cancel</button>
                 <button type="submit" className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Update Status</button>
               </div>
             </form>
@@ -523,7 +523,7 @@ export default function Machines() {
           <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl mx-4">
             <div className="px-6 py-4 border-b flex justify-between items-center">
               <h2 className="text-xl font-bold">Machine Details: {viewingMachine.machine_code}</h2>
-              <button onClick={() => setIsViewModalOpen(false)} className="text-gray-500 hover:text-gray-700 font-bold">&times;</button>
+              <button onClick={() => setIsViewModalOpen(false)} className="text-slate-500 hover:text-slate-700 font-bold">&times;</button>
             </div>
             
             <div className="p-6 grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -531,38 +531,38 @@ export default function Machines() {
               <div>
                 <h3 className="text-lg font-semibold border-b pb-2 mb-4">Information</h3>
                 <div className="grid grid-cols-2 gap-y-3">
-                  <div className="text-gray-500 text-sm">Machine Name</div>
+                  <div className="text-slate-500 text-sm">Machine Name</div>
                   <div className="font-medium">{viewingMachine.machine_name}</div>
                   
-                  <div className="text-gray-500 text-sm">Machine Type</div>
+                  <div className="text-slate-500 text-sm">Machine Type</div>
                   <div className="font-medium">{viewingMachine.machine_type}</div>
                   
-                  <div className="text-gray-500 text-sm">Department</div>
+                  <div className="text-slate-500 text-sm">Department</div>
                   <div className="font-medium">{viewingMachine.department}</div>
                   
-                  <div className="text-gray-500 text-sm">Brand & Model</div>
+                  <div className="text-slate-500 text-sm">Brand & Model</div>
                   <div className="font-medium">{viewingMachine.brand || '-'} {viewingMachine.model || ''}</div>
                   
-                  <div className="text-gray-500 text-sm">Operator</div>
+                  <div className="text-slate-500 text-sm">Operator</div>
                   <div className="font-medium">{viewingMachine.operator_name || 'Unassigned'}</div>
                   
-                  <div className="text-gray-500 text-sm">Installation Date</div>
+                  <div className="text-slate-500 text-sm">Installation Date</div>
                   <div className="font-medium">{viewingMachine.installation_date || '-'}</div>
                   
-                  <div className="text-gray-500 text-sm">Current Status</div>
+                  <div className="text-slate-500 text-sm">Current Status</div>
                   <div>{getStatusBadge(viewingMachine.status)}</div>
 
-                  <div className="text-gray-500 text-sm">Condition</div>
+                  <div className="text-slate-500 text-sm">Condition</div>
                   <div>{getConditionBadge(viewingMachine.condition)}</div>
                   
-                  <div className="text-gray-500 text-sm">Last Maintenance</div>
+                  <div className="text-slate-500 text-sm">Last Maintenance</div>
                   <div className="font-medium">{viewingMachine.last_maintenance_date || '-'}</div>
 
-                  <div className="text-gray-500 text-sm">Next Maintenance</div>
+                  <div className="text-slate-500 text-sm">Next Maintenance</div>
                   <div className="font-medium">{viewingMachine.next_maintenance_date || '-'}</div>
                   
-                  <div className="text-gray-500 text-sm col-span-2 mt-2">Notes</div>
-                  <div className="font-medium col-span-2 bg-gray-50 p-3 rounded text-sm">{viewingMachine.notes || '-'}</div>
+                  <div className="text-slate-500 text-sm col-span-2 mt-2">Notes</div>
+                  <div className="font-medium col-span-2 bg-slate-50 p-3 rounded text-sm">{viewingMachine.notes || '-'}</div>
                 </div>
               </div>
 
@@ -570,27 +570,27 @@ export default function Machines() {
               <div>
                 <h3 className="text-lg font-semibold border-b pb-2 mb-4">Status History</h3>
                 {machineHistory.length === 0 ? (
-                  <p className="text-gray-500 text-sm">No history records found.</p>
+                  <p className="text-slate-500 text-sm">No history records found.</p>
                 ) : (
                   <div className="overflow-y-auto max-h-[400px] pr-2">
                     <div className="space-y-4">
                       {machineHistory.map(hist => (
-                        <div key={hist.id} className="border border-gray-200 rounded p-3 bg-gray-50 text-sm">
+                        <div key={hist.id} className="border border-slate-200 rounded p-3 bg-slate-50 text-sm">
                           <div className="flex justify-between items-center mb-2">
-                            <span className="font-bold text-gray-700">{new Date(hist.changed_at).toLocaleString()}</span>
+                            <span className="font-bold text-slate-700">{new Date(hist.changed_at).toLocaleString()}</span>
                             <div className="flex items-center gap-2">
                               {hist.previous_status ? (
                                 <>
-                                  <span className="text-gray-500">{hist.previous_status}</span>
+                                  <span className="text-slate-500">{hist.previous_status}</span>
                                   <span className="text-gray-400">→</span>
                                 </>
                               ) : null}
                               {getStatusBadge(hist.new_status)}
                             </div>
                           </div>
-                          {hist.reason && <div className="mb-1"><span className="text-gray-500">Reason:</span> {hist.reason}</div>}
-                          {hist.downtime_minutes > 0 && <div className="mb-1"><span className="text-gray-500">Downtime:</span> {hist.downtime_minutes} min</div>}
-                          {hist.notes && <div className="text-gray-600 mt-2 bg-white p-2 border rounded">{hist.notes}</div>}
+                          {hist.reason && <div className="mb-1"><span className="text-slate-500">Reason:</span> {hist.reason}</div>}
+                          {hist.downtime_minutes > 0 && <div className="mb-1"><span className="text-slate-500">Downtime:</span> {hist.downtime_minutes} min</div>}
+                          {hist.notes && <div className="text-slate-600 mt-2 bg-white p-2 border rounded">{hist.notes}</div>}
                         </div>
                       ))}
                     </div>
@@ -599,8 +599,8 @@ export default function Machines() {
               </div>
             </div>
 
-            <div className="px-6 py-4 border-t bg-gray-50 flex justify-end">
-              <button onClick={() => setIsViewModalOpen(false)} className="px-4 py-2 border rounded bg-white text-gray-700 hover:bg-gray-50">Close</button>
+            <div className="px-6 py-4 border-t bg-slate-50 flex justify-end">
+              <button onClick={() => setIsViewModalOpen(false)} className="px-4 py-2 border rounded bg-white text-slate-700 hover:bg-slate-50 transition-colors duration-150">Close</button>
             </div>
           </div>
         </div>

@@ -140,35 +140,35 @@ export default function ProductionPage() {
 
   const getStatusBadge = (status: string) => {
     switch(status) {
-      case 'Planned': return 'bg-gray-100 text-gray-800';
-      case 'In Progress': return 'bg-blue-100 text-blue-800';
-      case 'Completed': return 'bg-green-100 text-green-800';
-      case 'Delayed': return 'bg-red-100 text-red-800';
-      default: return 'bg-gray-100 text-gray-800';
+      case 'Planned': return 'bg-slate-50 text-slate-700 border-slate-200';
+      case 'In Progress': return 'bg-blue-50 text-blue-700 border-blue-200';
+      case 'Completed': return 'bg-green-50 text-green-700 border-green-200';
+      case 'Delayed': return 'bg-red-50 text-red-700 border-red-200';
+      default: return 'bg-slate-50 text-slate-700 border-slate-200';
     }
   };
 
   return (
     <div className="flex flex-col h-full">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0 mb-6">
-        <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">Production Management</h1>
+        <div className="flex flex-col"><h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Production Tracking</h1><p className="text-sm text-slate-500 mt-1">Monitor live manufacturing batches.</p></div>
         <button onClick={() => setIsCreateModalOpen(true)} className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded shadow transition w-full sm:w-auto">
           + Create Production Plan
         </button>
       </div>
 
-      <div className="bg-white rounded-lg shadow overflow-hidden flex-1 flex flex-col">
+      <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden flex-1 flex flex-col">
         <div className="overflow-x-auto">
           <table className="min-w-max w-full text-left border-collapse">
-            <thead className="bg-gray-50 border-b border-gray-200">
+            <thead className="bg-slate-50 border-b border-slate-200">
               <tr>
-                <th className="px-4 py-3 font-semibold text-gray-700 text-sm">Prod Code</th>
-                <th className="px-4 py-3 font-semibold text-gray-700 text-sm">Order No</th>
-                <th className="px-4 py-3 font-semibold text-gray-700 text-sm">Dept</th>
-                <th className="px-4 py-3 font-semibold text-gray-700 text-sm">Progress</th>
-                <th className="px-4 py-3 font-semibold text-gray-700 text-sm">Timeline</th>
-                <th className="px-4 py-3 font-semibold text-gray-700 text-sm">Status</th>
-                <th className="px-4 py-3 font-semibold text-gray-700 text-sm text-center">Actions</th>
+                <th className="px-4 py-3 font-semibold text-slate-700 text-sm">Prod Code</th>
+                <th className="px-4 py-3 font-semibold text-slate-700 text-sm">Order No</th>
+                <th className="px-4 py-3 font-semibold text-slate-700 text-sm">Dept</th>
+                <th className="px-4 py-3 font-semibold text-slate-700 text-sm">Progress</th>
+                <th className="px-4 py-3 font-semibold text-slate-700 text-sm">Timeline</th>
+                <th className="px-4 py-3 font-semibold text-slate-700 text-sm">Status</th>
+                <th className="px-4 py-3 font-semibold text-slate-700 text-sm text-center">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
@@ -178,26 +178,26 @@ export default function ProductionPage() {
                 const today = new Date().toISOString().split('T')[0];
                 const isDelayed = prod.planned_end_date < today && prod.status !== 'Completed';
                 return (
-                  <tr key={prod.id} className="hover:bg-gray-50">
+                  <tr key={prod.id} className="hover:bg-slate-50 transition-colors duration-150">
                     <td className="px-4 py-3 text-sm font-medium">{prod.production_code}</td>
                     <td className="px-4 py-3 text-sm">{prod.order_number}</td>
                     <td className="px-4 py-3 text-sm">{prod.department}</td>
                     <td className="px-4 py-3 text-sm w-48">
                       <div className="flex items-center gap-2">
                         <div className="flex-1 bg-gray-200 rounded-full h-2">
-                          <div className="bg-blue-600 h-2 rounded-full" style={{ width: `${prod.progress_percentage}%` }}></div>
+                          <div className={`h-2 rounded-full ${(prod.progress_percentage || 0) >= 100 ? "bg-green-500" : (prod.progress_percentage || 0) > 60 ? "bg-blue-500" : "bg-orange-500"}`} style={{ width: `${prod.progress_percentage || 0}%` }}></div>
                         </div>
                         <span className="text-xs">{prod.progress_percentage}%</span>
                       </div>
-                      <div className="text-xs text-gray-500 mt-1">{prod.completed_quantity} / {prod.target_quantity}</div>
+                      <div className="text-xs text-slate-500 mt-1">{prod.completed_quantity} / {prod.target_quantity}</div>
                     </td>
                     <td className="px-4 py-3 text-sm">
-                      <div className="text-xs text-gray-500">{prod.planned_start_date} to</div>
+                      <div className="text-xs text-slate-500">{prod.planned_start_date} to</div>
                       <div className={isDelayed ? 'text-red-600 font-bold' : ''}>{prod.planned_end_date}</div>
-                      {isDelayed && <span className="text-[10px] bg-red-100 text-red-800 px-1 rounded">Delayed</span>}
+                      {isDelayed && <span className="text-[10px] bg-red-50 text-red-700 border-red-200 px-1 rounded">Delayed</span>}
                     </td>
                     <td className="px-4 py-3 text-sm">
-                      <span className={`px-2 py-1 rounded text-xs font-semibold ${getStatusBadge(prod.status || '')}`}>{prod.status}</span>
+                      <span className={`px-2 py-1 rounded-full text-xs font-bold border ${getStatusBadge(prod.status || '')}`}>{prod.status}</span>
                     </td>
                     <td className="px-4 py-3 text-sm text-center">
                       <button onClick={() => openViewModal(prod)} className="text-blue-600 hover:underline mr-2">View</button>
@@ -323,48 +323,48 @@ export default function ProductionPage() {
           <div className="bg-white rounded-lg shadow-xl w-full max-w-5xl h-[90vh] flex flex-col">
             <div className="px-6 py-4 border-b flex justify-between items-center">
               <h2 className="text-xl font-bold">Production Details: {viewingProduction.production_code}</h2>
-              <button onClick={() => setIsViewModalOpen(false)} className="text-gray-500 hover:text-black text-2xl">&times;</button>
+              <button onClick={() => setIsViewModalOpen(false)} className="text-slate-500 hover:text-black text-2xl">&times;</button>
             </div>
             
             <div className="p-6 overflow-y-auto flex-1">
-              <div className="grid grid-cols-4 gap-4 mb-8 bg-gray-50 p-4 rounded-lg">
+              <div className="grid grid-cols-4 gap-4 mb-8 bg-slate-50 p-4 rounded-lg">
                 <div>
-                  <div className="text-xs text-gray-500">Order</div>
+                  <div className="text-xs text-slate-500">Order</div>
                   <div className="font-bold">{viewingProduction.order_number}</div>
                 </div>
                 <div>
-                  <div className="text-xs text-gray-500">Customer</div>
+                  <div className="text-xs text-slate-500">Customer</div>
                   <div className="font-bold">{viewingProduction.customer_name}</div>
                 </div>
                 <div>
-                  <div className="text-xs text-gray-500">Product</div>
+                  <div className="text-xs text-slate-500">Product</div>
                   <div className="font-bold">{viewingProduction.product_name}</div>
                 </div>
                 <div>
-                  <div className="text-xs text-gray-500">Status</div>
+                  <div className="text-xs text-slate-500">Status</div>
                   <div className="font-bold">{viewingProduction.status}</div>
                 </div>
                 <div>
-                  <div className="text-xs text-gray-500">Target Qty</div>
+                  <div className="text-xs text-slate-500">Target Qty</div>
                   <div className="font-bold text-lg">{viewingProduction.target_quantity}</div>
                 </div>
                 <div>
-                  <div className="text-xs text-gray-500">Completed Qty</div>
+                  <div className="text-xs text-slate-500">Completed Qty</div>
                   <div className="font-bold text-lg text-green-600">{viewingProduction.completed_quantity}</div>
                 </div>
                 <div>
-                  <div className="text-xs text-gray-500">Remaining Qty</div>
+                  <div className="text-xs text-slate-500">Remaining Qty</div>
                   <div className="font-bold text-lg text-blue-600">{viewingProduction.remaining_quantity}</div>
                 </div>
                 <div>
-                  <div className="text-xs text-gray-500">Rejected Qty</div>
+                  <div className="text-xs text-slate-500">Rejected Qty</div>
                   <div className="font-bold text-lg text-red-600">{viewingProduction.rejected_quantity}</div>
                 </div>
               </div>
 
               <h3 className="font-bold text-lg mb-2">Production Stages</h3>
               <table className="w-full mb-8 border">
-                <thead className="bg-gray-100">
+                <thead className="bg-slate-100">
                   <tr>
                     <th className="p-2 text-left text-sm">Stage</th>
                     <th className="p-2 text-left text-sm">Target</th>
@@ -388,7 +388,7 @@ export default function ProductionPage() {
 
               <h3 className="font-bold text-lg mb-2">Daily Updates History</h3>
               <table className="min-w-max w-full border">
-                <thead className="bg-gray-100">
+                <thead className="bg-slate-100">
                   <tr>
                     <th className="p-2 text-left text-sm">Date</th>
                     <th className="p-2 text-left text-sm">Stage</th>
@@ -412,7 +412,7 @@ export default function ProductionPage() {
                     </tr>
                   ))}
                   {viewingUpdates.length === 0 && (
-                    <tr><td colSpan={7} className="p-4 text-center text-gray-500">No updates recorded yet.</td></tr>
+                    <tr><td colSpan={7} className="p-4 text-center text-slate-500">No updates recorded yet.</td></tr>
                   )}
                 </tbody>
               </table>
@@ -423,3 +423,5 @@ export default function ProductionPage() {
     </div>
   );
 }
+
+

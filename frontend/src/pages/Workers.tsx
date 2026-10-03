@@ -124,20 +124,20 @@ export default function Workers() {
   };
 
   const getStatusBadge = (status: string) => {
-    if (status === 'Active') return <span className="px-2 py-1 bg-green-100 text-green-800 rounded text-xs font-semibold">Active</span>;
-    if (status === 'Inactive') return <span className="px-2 py-1 bg-gray-100 text-gray-800 rounded text-xs font-semibold">Inactive</span>;
-    if (status === 'On Leave') return <span className="px-2 py-1 bg-yellow-100 text-yellow-800 rounded text-xs font-semibold">On Leave</span>;
-    return <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs font-semibold">{status}</span>;
+    if (status === 'Active') return <span className="px-2 py-1 bg-green-50 text-green-700 border-green-200 rounded-full text-xs font-bold border">Active</span>;
+    if (status === 'Inactive') return <span className="px-2 py-1 bg-slate-50 text-slate-700 border-slate-200 rounded-full text-xs font-bold border">Inactive</span>;
+    if (status === 'On Leave') return <span className="px-2 py-1 bg-amber-50 text-amber-700 border-amber-200 rounded-full text-xs font-bold border">On Leave</span>;
+    return <span className="px-2 py-1 bg-blue-50 text-blue-700 border-blue-200 rounded-full text-xs font-bold border">{status}</span>;
   };
 
   return (
     <div className="flex flex-col h-full">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0 mb-6">
-        <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">Worker Management</h1>
+        <div className="flex flex-col"><h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Worker Management</h1><p className="text-sm text-slate-500 mt-1">Manage factory employees and shifts.</p></div>
         <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3 w-full sm:w-auto">
           <button 
             onClick={() => setIsImportModalOpen(true)}
-            className="bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded border border-gray-300 shadow transition"
+            className="bg-slate-100 hover:bg-gray-200 text-slate-700 font-semibold py-2 px-4 rounded border border-slate-300 shadow transition"
           >
             Import Data
           </button>
@@ -162,7 +162,7 @@ export default function Workers() {
         </div>
       )}
 
-      <div className="bg-white rounded-lg shadow border border-gray-200 mb-6 p-4">
+      <div className="bg-white rounded-lg shadow border border-slate-200 mb-6 p-4">
         <div className="flex flex-col md:flex-row gap-4">
           <input 
             type="text" 
@@ -199,26 +199,26 @@ export default function Workers() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow overflow-hidden flex-1 flex flex-col">
+      <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden flex-1 flex flex-col">
         <div className="overflow-x-auto">
           <table className="min-w-max w-full text-left border-collapse">
-            <thead className="bg-gray-50 border-b border-gray-200">
+            <thead className="bg-slate-50 border-b border-slate-200">
               <tr>
-                <th className="px-4 py-3 font-semibold text-gray-700 text-sm">Employee ID</th>
-                <th className="px-4 py-3 font-semibold text-gray-700 text-sm">Name</th>
-                <th className="px-4 py-3 font-semibold text-gray-700 text-sm">Department</th>
-                <th className="px-4 py-3 font-semibold text-gray-700 text-sm">Designation</th>
-                <th className="px-4 py-3 font-semibold text-gray-700 text-sm">Phone</th>
-                <th className="px-4 py-3 font-semibold text-gray-700 text-sm">Shift</th>
-                <th className="px-4 py-3 font-semibold text-gray-700 text-sm">Status</th>
-                <th className="px-4 py-3 font-semibold text-gray-700 text-sm">Joining Date</th>
-                <th className="px-4 py-3 font-semibold text-gray-700 text-sm text-center">Actions</th>
+                <th className="px-4 py-3 font-semibold text-slate-700 text-sm">Employee ID</th>
+                <th className="px-4 py-3 font-semibold text-slate-700 text-sm">Name</th>
+                <th className="px-4 py-3 font-semibold text-slate-700 text-sm">Department</th>
+                <th className="px-4 py-3 font-semibold text-slate-700 text-sm">Designation</th>
+                <th className="px-4 py-3 font-semibold text-slate-700 text-sm">Phone</th>
+                <th className="px-4 py-3 font-semibold text-slate-700 text-sm">Shift</th>
+                <th className="px-4 py-3 font-semibold text-slate-700 text-sm">Status</th>
+                <th className="px-4 py-3 font-semibold text-slate-700 text-sm">Joining Date</th>
+                <th className="px-4 py-3 font-semibold text-slate-700 text-sm text-center">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
               {loading ? (
                 <tr>
-                  <td colSpan={9} className="px-4 py-8 text-center text-gray-500">
+                  <td colSpan={9} className="px-4 py-8 text-center text-slate-500">
                     <div className="flex justify-center items-center">
                        <span className="ml-2">Loading workers...</span>
                     </div>
@@ -226,25 +226,25 @@ export default function Workers() {
                 </tr>
               ) : workers.length === 0 ? (
                 <tr>
-                  <td colSpan={9} className="px-4 py-8 text-center text-gray-500">
+                  <td colSpan={9} className="px-4 py-8 text-center text-slate-500">
                     No workers found
                   </td>
                 </tr>
               ) : (
                 workers.map(worker => (
-                  <tr key={worker.id} className="hover:bg-gray-50">
+                  <tr key={worker.id} className="hover:bg-slate-50 transition-colors duration-150">
                     <td className="px-4 py-3 text-sm">{worker.employee_id}</td>
                     <td className="px-4 py-3 text-sm font-medium">{worker.name}</td>
                     <td className="px-4 py-3 text-sm">{worker.department}</td>
-                    <td className="px-4 py-3 text-sm text-gray-500">{worker.designation || '-'}</td>
-                    <td className="px-4 py-3 text-sm text-gray-500">{worker.phone || '-'}</td>
-                    <td className="px-4 py-3 text-sm text-gray-500">{worker.shift || '-'}</td>
+                    <td className="px-4 py-3 text-sm text-slate-500">{worker.designation || '-'}</td>
+                    <td className="px-4 py-3 text-sm text-slate-500">{worker.phone || '-'}</td>
+                    <td className="px-4 py-3 text-sm text-slate-500">{worker.shift || '-'}</td>
                     <td className="px-4 py-3 text-sm">{getStatusBadge(worker.status)}</td>
-                    <td className="px-4 py-3 text-sm text-gray-500">{worker.joining_date || '-'}</td>
+                    <td className="px-4 py-3 text-sm text-slate-500">{worker.joining_date || '-'}</td>
                     <td className="px-4 py-3 text-sm text-center">
                       <div className="flex justify-center gap-2">
                         <button onClick={() => openViewModal(worker)} className="text-blue-600 hover:text-blue-800" title="View">View</button>
-                        <button onClick={() => openEditModal(worker)} className="text-gray-600 hover:text-gray-800" title="Edit">Edit</button>
+                        <button onClick={() => openEditModal(worker)} className="text-slate-600 hover:text-slate-800" title="Edit">Edit</button>
                         <button onClick={() => handleDelete(worker.id!)} className="text-red-600 hover:text-red-800" title="Delete">Delete</button>
                       </div>
                     </td>
@@ -266,15 +266,15 @@ export default function Workers() {
             <form onSubmit={handleSubmit} className="p-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Employee ID *</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Employee ID *</label>
                   <input required name="employee_id" type="text" value={formData.employee_id} onChange={handleInputChange} className="w-full border rounded px-3 py-2" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Name *</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Name *</label>
                   <input required name="name" type="text" value={formData.name} onChange={handleInputChange} className="w-full border rounded px-3 py-2" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Department *</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Department *</label>
                   <select required name="department" value={formData.department} onChange={handleInputChange} className="w-full border rounded px-3 py-2 w-full sm:w-auto">
                     <option value="">Select Department</option>
                     <option value="Cutting">Cutting</option>
@@ -288,19 +288,19 @@ export default function Workers() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Designation</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Designation</label>
                   <input name="designation" type="text" value={formData.designation} onChange={handleInputChange} className="w-full border rounded px-3 py-2" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Phone</label>
                   <input name="phone" type="text" value={formData.phone} onChange={handleInputChange} className="w-full border rounded px-3 py-2" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Email</label>
                   <input name="email" type="email" value={formData.email} onChange={handleInputChange} className="w-full border rounded px-3 py-2" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Shift</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Shift</label>
                   <select name="shift" value={formData.shift} onChange={handleInputChange} className="w-full border rounded px-3 py-2 w-full sm:w-auto">
                     <option value="">Select Shift</option>
                     <option value="Morning">Morning</option>
@@ -309,11 +309,11 @@ export default function Workers() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Joining Date</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Joining Date</label>
                   <input name="joining_date" type="date" value={formData.joining_date} onChange={handleInputChange} className="w-full border rounded px-3 py-2" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Status</label>
                   <select name="status" value={formData.status} onChange={handleInputChange} className="w-full border rounded px-3 py-2 w-full sm:w-auto">
                     <option value="Active">Active</option>
                     <option value="Inactive">Inactive</option>
@@ -323,7 +323,7 @@ export default function Workers() {
               </div>
               
               <div className="mt-8 flex justify-end gap-3 border-t pt-4">
-                <button type="button" onClick={() => setIsModalOpen(false)} className="px-4 py-2 border rounded text-gray-700 hover:bg-gray-50">Cancel</button>
+                <button type="button" onClick={() => setIsModalOpen(false)} className="px-4 py-2 border rounded text-slate-700 hover:bg-slate-50 transition-colors duration-150">Cancel</button>
                 <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 w-full sm:w-auto">
                   {editingWorker ? 'Update Worker' : 'Add Worker'}
                 </button>
@@ -339,40 +339,40 @@ export default function Workers() {
           <div className="bg-white rounded-lg shadow-xl w-full max-w-lg mx-4">
             <div className="px-6 py-4 border-b flex justify-between items-center">
               <h2 className="text-xl font-bold">Worker Details</h2>
-              <button onClick={() => setIsViewModalOpen(false)} className="text-gray-500 hover:text-gray-700 font-bold">&times;</button>
+              <button onClick={() => setIsViewModalOpen(false)} className="text-slate-500 hover:text-slate-700 font-bold">&times;</button>
             </div>
             <div className="p-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4">
-                <div className="text-gray-500 text-sm">Employee ID</div>
+                <div className="text-slate-500 text-sm">Employee ID</div>
                 <div className="font-medium">{viewingWorker.employee_id}</div>
                 
-                <div className="text-gray-500 text-sm">Name</div>
+                <div className="text-slate-500 text-sm">Name</div>
                 <div className="font-medium">{viewingWorker.name}</div>
                 
-                <div className="text-gray-500 text-sm">Department</div>
+                <div className="text-slate-500 text-sm">Department</div>
                 <div className="font-medium">{viewingWorker.department}</div>
                 
-                <div className="text-gray-500 text-sm">Designation</div>
+                <div className="text-slate-500 text-sm">Designation</div>
                 <div className="font-medium">{viewingWorker.designation || '-'}</div>
                 
-                <div className="text-gray-500 text-sm">Phone</div>
+                <div className="text-slate-500 text-sm">Phone</div>
                 <div className="font-medium">{viewingWorker.phone || '-'}</div>
                 
-                <div className="text-gray-500 text-sm">Email</div>
+                <div className="text-slate-500 text-sm">Email</div>
                 <div className="font-medium">{viewingWorker.email || '-'}</div>
                 
-                <div className="text-gray-500 text-sm">Shift</div>
+                <div className="text-slate-500 text-sm">Shift</div>
                 <div className="font-medium">{viewingWorker.shift || '-'}</div>
                 
-                <div className="text-gray-500 text-sm">Joining Date</div>
+                <div className="text-slate-500 text-sm">Joining Date</div>
                 <div className="font-medium">{viewingWorker.joining_date || '-'}</div>
                 
-                <div className="text-gray-500 text-sm">Status</div>
+                <div className="text-slate-500 text-sm">Status</div>
                 <div>{getStatusBadge(viewingWorker.status)}</div>
               </div>
             </div>
-            <div className="px-6 py-4 border-t bg-gray-50 flex justify-end">
-              <button onClick={() => setIsViewModalOpen(false)} className="px-4 py-2 border rounded bg-white text-gray-700 hover:bg-gray-50">Close</button>
+            <div className="px-6 py-4 border-t bg-slate-50 flex justify-end">
+              <button onClick={() => setIsViewModalOpen(false)} className="px-4 py-2 border rounded bg-white text-slate-700 hover:bg-slate-50 transition-colors duration-150">Close</button>
             </div>
           </div>
         </div>

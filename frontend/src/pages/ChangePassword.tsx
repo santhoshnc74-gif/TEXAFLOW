@@ -58,39 +58,39 @@ const ChangePassword = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10 bg-white p-8 border border-gray-200 rounded-lg shadow-sm">
-      <h2 className="text-2xl font-bold text-gray-900 mb-6">Change Password</h2>
+    <div className="max-w-md mx-auto mt-10 bg-white p-8 border border-slate-200 rounded-lg shadow-sm">
+      <h2 className="text-2xl font-bold text-slate-900 mb-6">Change Password</h2>
       
       {error && <div className="mb-4 bg-red-50 text-red-600 p-3 rounded">{error}</div>}
       {success && <div className="mb-4 bg-green-50 text-green-600 p-3 rounded">{success}</div>}
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700">Current Password</label>
+          <label className="block text-sm font-medium text-slate-700">Current Password</label>
           <input
             type="password"
             required
-            className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:ring-indigo-500 focus:border-indigo-500"
+            className="mt-1 block w-full border border-slate-300 rounded-md p-2 focus:ring-indigo-500 focus:border-indigo-500"
             value={currentPassword}
             onChange={(e) => setCurrentPassword(e.target.value)}
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700">New Password</label>
+          <label className="block text-sm font-medium text-slate-700">New Password</label>
           <input
             type="password"
             required
-            className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:ring-indigo-500 focus:border-indigo-500"
+            className="mt-1 block w-full border border-slate-300 rounded-md p-2 focus:ring-indigo-500 focus:border-indigo-500"
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700">Confirm New Password</label>
+          <label className="block text-sm font-medium text-slate-700">Confirm New Password</label>
           <input
             type="password"
             required
-            className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:ring-indigo-500 focus:border-indigo-500"
+            className="mt-1 block w-full border border-slate-300 rounded-md p-2 focus:ring-indigo-500 focus:border-indigo-500"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           />

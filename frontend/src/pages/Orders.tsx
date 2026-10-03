@@ -181,26 +181,26 @@ export default function Orders() {
 
   const getStatusBadge = (status: string) => {
     switch (status) {
-      case 'Pending': return <span className="px-2 py-1 bg-gray-100 text-gray-800 rounded text-xs font-semibold">Pending</span>;
-      case 'Confirmed': return <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs font-semibold">Confirmed</span>;
-      case 'In Production': return <span className="px-2 py-1 bg-purple-100 text-purple-800 rounded text-xs font-semibold">In Production</span>;
-      case 'Quality Check': return <span className="px-2 py-1 bg-yellow-100 text-yellow-800 rounded text-xs font-semibold">Quality Check</span>;
-      case 'Packing': return <span className="px-2 py-1 bg-orange-100 text-orange-800 rounded text-xs font-semibold">Packing</span>;
-      case 'Ready for Dispatch': return <span className="px-2 py-1 bg-teal-100 text-teal-800 rounded text-xs font-semibold">Ready for Dispatch</span>;
-      case 'Dispatched': return <span className="px-2 py-1 bg-indigo-100 text-indigo-800 rounded text-xs font-semibold">Dispatched</span>;
-      case 'Delivered': return <span className="px-2 py-1 bg-green-100 text-green-800 rounded text-xs font-semibold">Delivered</span>;
-      case 'Cancelled': return <span className="px-2 py-1 bg-red-100 text-red-800 rounded text-xs font-semibold">Cancelled</span>;
-      default: return <span className="px-2 py-1 bg-gray-100 text-gray-800 rounded text-xs font-semibold">{status}</span>;
+      case 'Pending': return <span className="px-2 py-1 bg-slate-50 text-slate-700 border-slate-200 rounded-full text-xs font-bold border">Pending</span>;
+      case 'Confirmed': return <span className="px-2 py-1 bg-blue-50 text-blue-700 border-blue-200 rounded-full text-xs font-bold border">Confirmed</span>;
+      case 'In Production': return <span className="px-2 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-bold border">In Production</span>;
+      case 'Quality Check': return <span className="px-2 py-1 bg-amber-50 text-amber-700 border-amber-200 rounded-full text-xs font-bold border">Quality Check</span>;
+      case 'Packing': return <span className="px-2 py-1 bg-orange-50 text-orange-700 border-orange-200 rounded-full text-xs font-bold border">Packing</span>;
+      case 'Ready for Dispatch': return <span className="px-2 py-1 bg-teal-100 text-teal-800 rounded-full text-xs font-bold border">Ready for Dispatch</span>;
+      case 'Dispatched': return <span className="px-2 py-1 bg-indigo-100 text-indigo-800 rounded-full text-xs font-bold border">Dispatched</span>;
+      case 'Delivered': return <span className="px-2 py-1 bg-green-50 text-green-700 border-green-200 rounded-full text-xs font-bold border">Delivered</span>;
+      case 'Cancelled': return <span className="px-2 py-1 bg-red-50 text-red-700 border-red-200 rounded-full text-xs font-bold border">Cancelled</span>;
+      default: return <span className="px-2 py-1 bg-slate-50 text-slate-700 border-slate-200 rounded-full text-xs font-bold border">{status}</span>;
     }
   };
 
   const getPriorityBadge = (priority: string) => {
     switch (priority) {
-      case 'Low': return <span className="px-2 py-1 bg-gray-100 text-gray-800 rounded text-xs font-semibold">Low</span>;
-      case 'Normal': return <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs font-semibold">Normal</span>;
-      case 'High': return <span className="px-2 py-1 bg-orange-100 text-orange-800 rounded text-xs font-semibold">High</span>;
-      case 'Urgent': return <span className="px-2 py-1 bg-red-100 text-red-800 rounded text-xs font-semibold">Urgent</span>;
-      default: return <span className="px-2 py-1 bg-gray-100 text-gray-800 rounded text-xs font-semibold">{priority}</span>;
+      case 'Low': return <span className="px-2 py-1 bg-slate-50 text-slate-700 border-slate-200 rounded-full text-xs font-bold border">Low</span>;
+      case 'Normal': return <span className="px-2 py-1 bg-blue-50 text-blue-700 border-blue-200 rounded-full text-xs font-bold border">Normal</span>;
+      case 'High': return <span className="px-2 py-1 bg-orange-50 text-orange-700 border-orange-200 rounded-full text-xs font-bold border">High</span>;
+      case 'Urgent': return <span className="px-2 py-1 bg-red-50 text-red-700 border-red-200 rounded-full text-xs font-bold border">Urgent</span>;
+      default: return <span className="px-2 py-1 bg-slate-50 text-slate-700 border-slate-200 rounded-full text-xs font-bold border">{priority}</span>;
     }
   };
 
@@ -217,7 +217,7 @@ export default function Orders() {
   return (
     <div className="flex flex-col h-full">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0 mb-6">
-        <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">Order Management</h1>
+        <div className="flex flex-col"><h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Order Pipeline</h1><p className="text-sm text-slate-500 mt-1">Monitor customer orders and deadlines.</p></div>
         <button 
           onClick={openAddModal}
           className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded shadow transition w-full sm:w-auto"
@@ -239,33 +239,33 @@ export default function Orders() {
       )}
 
       <div className="grid grid-cols-2 md:grid-cols-6 gap-4 mb-6">
-        <div className="bg-white rounded-lg shadow p-4 border-t-4 border-t-gray-500">
-          <h2 className="text-sm font-semibold text-gray-600 mb-1">Total Orders</h2>
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-4 hover:shadow-md transition-shadow duration-200 border-t-4 border-t-gray-500">
+          <h2 className="text-sm font-semibold text-slate-600 mb-1">Total Orders</h2>
           <div className="text-2xl font-bold">{totalOrders}</div>
         </div>
-        <div className="bg-white rounded-lg shadow p-4 border-t-4 border-t-gray-300">
-          <h2 className="text-sm font-semibold text-gray-600 mb-1">Pending</h2>
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-4 hover:shadow-md transition-shadow duration-200 border-t-4 border-t-gray-300">
+          <h2 className="text-sm font-semibold text-slate-600 mb-1">Pending</h2>
           <div className="text-2xl font-bold">{pendingOrders}</div>
         </div>
-        <div className="bg-white rounded-lg shadow p-4 border-t-4 border-t-purple-500">
-          <h2 className="text-sm font-semibold text-gray-600 mb-1">In Production</h2>
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-4 hover:shadow-md transition-shadow duration-200 border-t-4 border-t-purple-500">
+          <h2 className="text-sm font-semibold text-slate-600 mb-1">In Production</h2>
           <div className="text-2xl font-bold">{inProduction}</div>
         </div>
-        <div className="bg-white rounded-lg shadow p-4 border-t-4 border-t-green-500">
-          <h2 className="text-sm font-semibold text-gray-600 mb-1">Delivered</h2>
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-4 hover:shadow-md transition-shadow duration-200 border-t-4 border-t-green-500">
+          <h2 className="text-sm font-semibold text-slate-600 mb-1">Delivered</h2>
           <div className="text-2xl font-bold">{completed}</div>
         </div>
-        <div className="bg-white rounded-lg shadow p-4 border-t-4 border-t-red-600">
-          <h2 className="text-sm font-semibold text-gray-600 mb-1">Urgent</h2>
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-4 hover:shadow-md transition-shadow duration-200 border-t-4 border-t-red-600">
+          <h2 className="text-sm font-semibold text-slate-600 mb-1">Urgent</h2>
           <div className="text-2xl font-bold text-red-600">{urgent}</div>
         </div>
-        <div className="bg-white rounded-lg shadow p-4 border-t-4 border-t-orange-600">
-          <h2 className="text-sm font-semibold text-gray-600 mb-1">Overdue</h2>
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-4 hover:shadow-md transition-shadow duration-200 border-t-4 border-t-orange-600">
+          <h2 className="text-sm font-semibold text-slate-600 mb-1">Overdue</h2>
           <div className="text-2xl font-bold text-orange-600">{overdue}</div>
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow border border-gray-200 mb-6 p-4">
+      <div className="bg-white rounded-lg shadow border border-slate-200 mb-6 p-4">
         <div className="flex flex-col md:flex-row gap-4 flex-wrap">
           <input 
             type="text" 
@@ -322,31 +322,31 @@ export default function Orders() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow overflow-hidden flex-1 flex flex-col">
+      <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden flex-1 flex flex-col">
         <div className="overflow-x-auto">
           <table className="min-w-max w-full text-left border-collapse">
-            <thead className="bg-gray-50 border-b border-gray-200">
+            <thead className="bg-slate-50 border-b border-slate-200">
               <tr>
-                <th className="px-4 py-3 font-semibold text-gray-700 text-sm">Order No</th>
-                <th className="px-4 py-3 font-semibold text-gray-700 text-sm">Customer</th>
-                <th className="px-4 py-3 font-semibold text-gray-700 text-sm">Product</th>
-                <th className="px-4 py-3 font-semibold text-gray-700 text-sm">Progress</th>
-                <th className="px-4 py-3 font-semibold text-gray-700 text-sm">Delivery</th>
-                <th className="px-4 py-3 font-semibold text-gray-700 text-sm">Priority</th>
-                <th className="px-4 py-3 font-semibold text-gray-700 text-sm">Status</th>
-                <th className="px-4 py-3 font-semibold text-gray-700 text-sm text-center">Actions</th>
+                <th className="px-4 py-3 font-semibold text-slate-700 text-sm">Order No</th>
+                <th className="px-4 py-3 font-semibold text-slate-700 text-sm">Customer</th>
+                <th className="px-4 py-3 font-semibold text-slate-700 text-sm">Product</th>
+                <th className="px-4 py-3 font-semibold text-slate-700 text-sm">Progress</th>
+                <th className="px-4 py-3 font-semibold text-slate-700 text-sm">Delivery</th>
+                <th className="px-4 py-3 font-semibold text-slate-700 text-sm">Priority</th>
+                <th className="px-4 py-3 font-semibold text-slate-700 text-sm">Status</th>
+                <th className="px-4 py-3 font-semibold text-slate-700 text-sm text-center">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
               {loading ? (
                 <tr>
-                  <td colSpan={8} className="px-4 py-8 text-center text-gray-500">
+                  <td colSpan={8} className="px-4 py-8 text-center text-slate-500">
                     Loading orders...
                   </td>
                 </tr>
               ) : orders.length === 0 ? (
                 <tr>
-                  <td colSpan={8} className="px-4 py-8 text-center text-gray-500">
+                  <td colSpan={8} className="px-4 py-8 text-center text-slate-500">
                     No orders found.
                   </td>
                 </tr>
@@ -354,7 +354,7 @@ export default function Orders() {
                 orders.map(order => {
                   const isOverdue = order.expected_delivery_date < todayDate && order.status !== 'Delivered' && order.status !== 'Cancelled';
                   return (
-                    <tr key={order.id} className="hover:bg-gray-50">
+                    <tr key={order.id} className="hover:bg-slate-50 transition-colors duration-150">
                       <td className="px-4 py-3 text-sm font-medium">{order.order_number}</td>
                       <td className="px-4 py-3 text-sm font-semibold">{order.customer_name}</td>
                       <td className="px-4 py-3 text-sm">{order.product_name}</td>
@@ -363,12 +363,12 @@ export default function Orders() {
                           <div className="w-full bg-gray-200 rounded-full h-2">
                             <div className="bg-blue-600 h-2 rounded-full" style={{ width: `${order.progress_percentage}%` }}></div>
                           </div>
-                          <span className="text-xs text-gray-500">{order.progress_percentage}%</span>
+                          <span className="text-xs text-slate-500">{order.progress_percentage}%</span>
                         </div>
                         <div className="text-xs text-gray-400 mt-1">{order.completed_quantity} / {order.quantity}</div>
                       </td>
                       <td className="px-4 py-3 text-sm">
-                        <span className={isOverdue ? 'text-red-600 font-bold' : 'text-gray-700'}>
+                        <span className={isOverdue ? 'text-red-600 font-bold' : 'text-slate-700'}>
                           {order.expected_delivery_date}
                         </span>
                         {isOverdue && <div className="text-xs text-red-600 font-semibold bg-red-100 rounded px-1 inline-block mt-1">Overdue</div>}
@@ -378,7 +378,7 @@ export default function Orders() {
                       <td className="px-4 py-3 text-sm text-center">
                         <div className="flex justify-center gap-2">
                           <button onClick={() => openViewModal(order)} className="text-blue-600 hover:text-blue-800" title="View">View</button>
-                          <button onClick={() => openEditModal(order)} className="text-gray-600 hover:text-gray-800" title="Edit">Edit</button>
+                          <button onClick={() => openEditModal(order)} className="text-slate-600 hover:text-slate-800" title="Edit">Edit</button>
                           <button onClick={() => openStatusModal(order)} className="text-green-600 hover:text-green-800" title="Status">Status</button>
                           <button onClick={() => handleDelete(order.id!)} className="text-red-600 hover:text-red-800" title="Delete">Delete</button>
                         </div>
@@ -402,58 +402,58 @@ export default function Orders() {
             <form onSubmit={handleSubmit} className="p-6">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Order Number *</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Order Number *</label>
                   <input required name="order_number" type="text" value={formData.order_number} onChange={handleInputChange} className="w-full border rounded px-3 py-2" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Customer *</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Customer *</label>
                   <select required name="customer_id" value={formData.customer_id} onChange={handleInputChange} className="w-full border rounded px-3 py-2 w-full sm:w-auto">
                     <option value={0}>Select Customer</option>
                     {customers.map(c => <option key={c.id} value={c.id}>{c.customer_code} - {c.customer_name}</option>)}
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Product Name *</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Product Name *</label>
                   <input required name="product_name" type="text" value={formData.product_name} onChange={handleInputChange} className="w-full border rounded px-3 py-2" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Product Category</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Product Category</label>
                   <input name="product_category" type="text" value={formData.product_category || ''} onChange={handleInputChange} className="w-full border rounded px-3 py-2" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Fabric Type</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Fabric Type</label>
                   <input name="fabric_type" type="text" value={formData.fabric_type || ''} onChange={handleInputChange} className="w-full border rounded px-3 py-2" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Color</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Color</label>
                   <input name="color" type="text" value={formData.color || ''} onChange={handleInputChange} className="w-full border rounded px-3 py-2" />
                 </div>
                 <div className="md:col-span-3">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Size Details</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Size Details</label>
                   <input name="size_details" type="text" value={formData.size_details || ''} onChange={handleInputChange} className="w-full border rounded px-3 py-2" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Quantity *</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Quantity *</label>
                   <input required name="quantity" type="number" min="1" value={formData.quantity} onChange={handleInputChange} className="w-full border rounded px-3 py-2" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Completed Quantity</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Completed Quantity</label>
                   <input name="completed_quantity" type="number" min="0" max={formData.quantity} value={formData.completed_quantity || 0} onChange={handleInputChange} className="w-full border rounded px-3 py-2" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Unit Price</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Unit Price</label>
                   <input name="unit_price" type="number" step="0.01" min="0" value={formData.unit_price || 0} onChange={handleInputChange} className="w-full border rounded px-3 py-2" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Order Date *</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Order Date *</label>
                   <input required name="order_date" type="date" value={formData.order_date || ''} onChange={handleInputChange} className="w-full border rounded px-3 py-2" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Expected Delivery Date *</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Expected Delivery Date *</label>
                   <input required name="expected_delivery_date" type="date" value={formData.expected_delivery_date || ''} onChange={handleInputChange} className="w-full border rounded px-3 py-2" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Priority</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Priority</label>
                   <select name="priority" value={formData.priority} onChange={handleInputChange} className="w-full border rounded px-3 py-2 w-full sm:w-auto">
                     <option value="Low">Low</option>
                     <option value="Normal">Normal</option>
@@ -462,7 +462,7 @@ export default function Orders() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Status</label>
                   <select name="status" value={formData.status} onChange={handleInputChange} className="w-full border rounded px-3 py-2 w-full sm:w-auto">
                     <option value="Pending">Pending</option>
                     <option value="Confirmed">Confirmed</option>
@@ -476,13 +476,13 @@ export default function Orders() {
                   </select>
                 </div>
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Notes</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Notes</label>
                   <textarea name="notes" value={formData.notes || ''} onChange={handleInputChange} className="w-full border rounded px-3 py-2" rows={2}></textarea>
                 </div>
               </div>
               
               <div className="mt-8 flex justify-end gap-3 border-t pt-4">
-                <button type="button" onClick={() => setIsModalOpen(false)} className="px-4 py-2 border rounded text-gray-700 hover:bg-gray-50">Cancel</button>
+                <button type="button" onClick={() => setIsModalOpen(false)} className="px-4 py-2 border rounded text-slate-700 hover:bg-slate-50 transition-colors duration-150">Cancel</button>
                 <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 w-full sm:w-auto">
                   {editingOrder ? 'Update Order' : 'Create Order'}
                 </button>
@@ -498,12 +498,12 @@ export default function Orders() {
           <div className="bg-white rounded-lg shadow-xl w-full max-w-md mx-4">
             <div className="px-6 py-4 border-b flex justify-between items-center">
               <h2 className="text-xl font-bold">Update Order Status</h2>
-              <button onClick={() => setIsStatusModalOpen(false)} className="text-gray-500 hover:text-gray-700 font-bold">&times;</button>
+              <button onClick={() => setIsStatusModalOpen(false)} className="text-slate-500 hover:text-slate-700 font-bold">&times;</button>
             </div>
             <form onSubmit={handleStatusSubmit} className="p-6">
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">New Status *</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">New Status *</label>
                   <select required name="status" value={statusFormData.status} onChange={handleStatusInputChange} className="w-full border rounded px-3 py-2 w-full sm:w-auto">
                     <option value="Pending">Pending</option>
                     <option value="Confirmed">Confirmed</option>
@@ -518,14 +518,14 @@ export default function Orders() {
                 </div>
                 {statusFormData.status === 'Delivered' && (
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Actual Delivery Date *</label>
+                    <label className="block text-sm font-medium text-slate-700 mb-1">Actual Delivery Date *</label>
                     <input required name="actual_delivery_date" type="date" value={statusFormData.actual_delivery_date} onChange={handleStatusInputChange} className="w-full border rounded px-3 py-2" />
                   </div>
                 )}
               </div>
               
               <div className="mt-6 flex justify-end gap-3 border-t pt-4">
-                <button type="button" onClick={() => setIsStatusModalOpen(false)} className="px-4 py-2 border rounded text-gray-700 hover:bg-gray-50">Cancel</button>
+                <button type="button" onClick={() => setIsStatusModalOpen(false)} className="px-4 py-2 border rounded text-slate-700 hover:bg-slate-50 transition-colors duration-150">Cancel</button>
                 <button type="submit" className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Update Status</button>
               </div>
             </form>
@@ -539,42 +539,42 @@ export default function Orders() {
           <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl mx-4">
             <div className="px-6 py-4 border-b flex justify-between items-center">
               <h2 className="text-xl font-bold">Order Details: {viewingOrder.order_number}</h2>
-              <button onClick={() => setIsViewModalOpen(false)} className="text-gray-500 hover:text-gray-700 font-bold">&times;</button>
+              <button onClick={() => setIsViewModalOpen(false)} className="text-slate-500 hover:text-slate-700 font-bold">&times;</button>
             </div>
             
             <div className="p-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-4 gap-x-6">
-                <div className="text-gray-500 text-sm">Customer</div>
+                <div className="text-slate-500 text-sm">Customer</div>
                 <div className="font-semibold">{viewingOrder.customer_name} ({viewingOrder.customer_code})</div>
                 
-                <div className="text-gray-500 text-sm">Company</div>
+                <div className="text-slate-500 text-sm">Company</div>
                 <div className="font-medium">{viewingOrder.company_name || '-'}</div>
 
-                <div className="text-gray-500 text-sm">Product Name</div>
+                <div className="text-slate-500 text-sm">Product Name</div>
                 <div className="font-semibold">{viewingOrder.product_name}</div>
                 
-                <div className="text-gray-500 text-sm">Category</div>
+                <div className="text-slate-500 text-sm">Category</div>
                 <div className="font-medium">{viewingOrder.product_category || '-'}</div>
 
-                <div className="text-gray-500 text-sm">Fabric</div>
+                <div className="text-slate-500 text-sm">Fabric</div>
                 <div className="font-medium">{viewingOrder.fabric_type || '-'}</div>
                 
-                <div className="text-gray-500 text-sm">Color</div>
+                <div className="text-slate-500 text-sm">Color</div>
                 <div className="font-medium">{viewingOrder.color || '-'}</div>
 
-                <div className="text-gray-500 text-sm">Size Details</div>
+                <div className="text-slate-500 text-sm">Size Details</div>
                 <div className="font-medium col-span-1 lg:col-span-3">{viewingOrder.size_details || '-'}</div>
 
-                <div className="text-gray-500 text-sm mt-4 font-bold">Quantity Information</div>
+                <div className="text-slate-500 text-sm mt-4 font-bold">Quantity Information</div>
                 <div className="col-span-1 lg:col-span-3"></div>
 
-                <div className="text-gray-500 text-sm">Total Quantity</div>
+                <div className="text-slate-500 text-sm">Total Quantity</div>
                 <div className="font-bold text-lg">{viewingOrder.quantity}</div>
                 
-                <div className="text-gray-500 text-sm">Completed</div>
+                <div className="text-slate-500 text-sm">Completed</div>
                 <div className="font-bold text-lg text-blue-600">{viewingOrder.completed_quantity}</div>
 
-                <div className="text-gray-500 text-sm">Progress</div>
+                <div className="text-slate-500 text-sm">Progress</div>
                 <div className="col-span-1 lg:col-span-3 flex items-center gap-2">
                   <div className="w-full max-w-xs bg-gray-200 rounded-full h-3">
                     <div className="bg-blue-600 h-3 rounded-full" style={{ width: `${viewingOrder.progress_percentage}%` }}></div>
@@ -582,42 +582,42 @@ export default function Orders() {
                   <span className="font-bold">{viewingOrder.progress_percentage}%</span>
                 </div>
 
-                <div className="text-gray-500 text-sm mt-4 font-bold">Scheduling</div>
+                <div className="text-slate-500 text-sm mt-4 font-bold">Scheduling</div>
                 <div className="col-span-1 lg:col-span-3"></div>
 
-                <div className="text-gray-500 text-sm">Order Date</div>
+                <div className="text-slate-500 text-sm">Order Date</div>
                 <div className="font-medium">{viewingOrder.order_date}</div>
 
-                <div className="text-gray-500 text-sm">Expected Delivery</div>
+                <div className="text-slate-500 text-sm">Expected Delivery</div>
                 <div className="font-medium">{viewingOrder.expected_delivery_date}</div>
 
-                <div className="text-gray-500 text-sm">Actual Delivery</div>
+                <div className="text-slate-500 text-sm">Actual Delivery</div>
                 <div className="font-medium">{viewingOrder.actual_delivery_date || '-'}</div>
                 
                 <div className="col-span-1 lg:col-span-2"></div>
 
-                <div className="text-gray-500 text-sm mt-4 font-bold">Status & Pricing</div>
+                <div className="text-slate-500 text-sm mt-4 font-bold">Status & Pricing</div>
                 <div className="col-span-1 lg:col-span-3"></div>
 
-                <div className="text-gray-500 text-sm">Priority</div>
+                <div className="text-slate-500 text-sm">Priority</div>
                 <div>{getPriorityBadge(viewingOrder.priority || '')}</div>
                 
-                <div className="text-gray-500 text-sm">Status</div>
+                <div className="text-slate-500 text-sm">Status</div>
                 <div>{getStatusBadge(viewingOrder.status || '')}</div>
 
-                <div className="text-gray-500 text-sm">Unit Price</div>
+                <div className="text-slate-500 text-sm">Unit Price</div>
                 <div className="font-medium">{viewingOrder.unit_price ? `$${viewingOrder.unit_price}` : '-'}</div>
 
-                <div className="text-gray-500 text-sm">Total Amount</div>
+                <div className="text-slate-500 text-sm">Total Amount</div>
                 <div className="font-bold text-green-700">{viewingOrder.total_amount ? `$${viewingOrder.total_amount}` : '-'}</div>
 
-                <div className="text-gray-500 text-sm col-span-1 sm:col-span-2 lg:col-span-4 mt-2">Notes</div>
-                <div className="font-medium col-span-1 sm:col-span-2 lg:col-span-4 bg-gray-50 p-3 rounded text-sm">{viewingOrder.notes || '-'}</div>
+                <div className="text-slate-500 text-sm col-span-1 sm:col-span-2 lg:col-span-4 mt-2">Notes</div>
+                <div className="font-medium col-span-1 sm:col-span-2 lg:col-span-4 bg-slate-50 p-3 rounded text-sm">{viewingOrder.notes || '-'}</div>
               </div>
             </div>
 
-            <div className="px-6 py-4 border-t bg-gray-50 flex justify-end">
-              <button onClick={() => setIsViewModalOpen(false)} className="px-4 py-2 border rounded bg-white text-gray-700 hover:bg-gray-50">Close</button>
+            <div className="px-6 py-4 border-t bg-slate-50 flex justify-end">
+              <button onClick={() => setIsViewModalOpen(false)} className="px-4 py-2 border rounded bg-white text-slate-700 hover:bg-slate-50 transition-colors duration-150">Close</button>
             </div>
           </div>
         </div>

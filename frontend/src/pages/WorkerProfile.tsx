@@ -28,18 +28,18 @@ const WorkerProfile = () => {
   }
 
   if (!profile) {
-    return <div className="text-center text-gray-500 py-12">Unable to load your profile.</div>;
+    return <div className="text-center text-slate-500 py-12">Unable to load your profile.</div>;
   }
 
   return (
     <div className="max-w-5xl mx-auto">
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-[#062B4A]">My Profile</h1>
-        <p className="text-gray-500 mt-1">View your personal information</p>
+        <p className="text-slate-500 mt-1">View your personal information</p>
       </div>
 
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-        <div className="px-6 py-5 border-b border-gray-200 flex justify-between items-center">
+      <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+        <div className="px-6 py-5 border-b border-slate-200 flex justify-between items-center">
           <h2 className="text-lg font-bold text-[#062B4A]">Personal Information</h2>
           {/* Edit button is hidden/unavailable as per instructions for non-editable fields */}
         </div>
@@ -50,7 +50,7 @@ const WorkerProfile = () => {
             <div className="h-32 w-32 rounded-full bg-[#1687F8] text-white flex items-center justify-center text-4xl font-bold uppercase shadow-sm">
               {profile.name.substring(0, 2)}
             </div>
-            <span className={`mt-4 px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${profile.status === 'Active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
+            <span className={`mt-4 px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${profile.status === 'Active' ? 'bg-green-50 text-green-700 border-green-200' : 'bg-red-50 text-red-700 border-red-200'}`}>
               {profile.status}
             </span>
           </div>
@@ -60,43 +60,43 @@ const WorkerProfile = () => {
             <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-6">
               
               <div className="sm:col-span-1 border-b border-gray-100 pb-3">
-                <dt className="text-sm font-medium text-gray-500">Employee ID</dt>
-                <dd className="mt-1 text-base font-semibold text-gray-900">{profile.employee_id}</dd>
+                <dt className="text-sm font-medium text-slate-500">Employee ID</dt>
+                <dd className="mt-1 text-base font-semibold text-slate-900">{profile.employee_id}</dd>
               </div>
 
               <div className="sm:col-span-1 border-b border-gray-100 pb-3">
-                <dt className="text-sm font-medium text-gray-500">Full Name</dt>
-                <dd className="mt-1 text-base font-semibold text-gray-900">{profile.name}</dd>
+                <dt className="text-sm font-medium text-slate-500">Full Name</dt>
+                <dd className="mt-1 text-base font-semibold text-slate-900">{profile.name}</dd>
               </div>
 
               <div className="sm:col-span-1 border-b border-gray-100 pb-3">
-                <dt className="text-sm font-medium text-gray-500">Department</dt>
-                <dd className="mt-1 text-base font-semibold text-gray-900">{profile.department}</dd>
+                <dt className="text-sm font-medium text-slate-500">Department</dt>
+                <dd className="mt-1 text-base font-semibold text-slate-900">{profile.department}</dd>
               </div>
 
               <div className="sm:col-span-1 border-b border-gray-100 pb-3">
-                <dt className="text-sm font-medium text-gray-500">Designation</dt>
-                <dd className="mt-1 text-base font-semibold text-gray-900">{profile.designation || '-'}</dd>
+                <dt className="text-sm font-medium text-slate-500">Designation</dt>
+                <dd className="mt-1 text-base font-semibold text-slate-900">{profile.designation || '-'}</dd>
               </div>
 
               <div className="sm:col-span-1 border-b border-gray-100 pb-3">
-                <dt className="text-sm font-medium text-gray-500">Phone</dt>
-                <dd className="mt-1 text-base font-semibold text-gray-900">{profile.phone || '-'}</dd>
+                <dt className="text-sm font-medium text-slate-500">Phone</dt>
+                <dd className="mt-1 text-base font-semibold text-slate-900">{profile.phone || '-'}</dd>
               </div>
 
               <div className="sm:col-span-1 border-b border-gray-100 pb-3">
-                <dt className="text-sm font-medium text-gray-500">Email</dt>
-                <dd className="mt-1 text-base font-semibold text-gray-900">{profile.email || '-'}</dd>
+                <dt className="text-sm font-medium text-slate-500">Email</dt>
+                <dd className="mt-1 text-base font-semibold text-slate-900">{profile.email || '-'}</dd>
               </div>
 
               <div className="sm:col-span-1 border-b border-gray-100 pb-3">
-                <dt className="text-sm font-medium text-gray-500">Shift</dt>
-                <dd className="mt-1 text-base font-semibold text-gray-900">{profile.shift || '-'}</dd>
+                <dt className="text-sm font-medium text-slate-500">Shift</dt>
+                <dd className="mt-1 text-base font-semibold text-slate-900">{profile.shift || '-'}</dd>
               </div>
 
               <div className="sm:col-span-1 border-b border-gray-100 pb-3">
-                <dt className="text-sm font-medium text-gray-500">Joining Date</dt>
-                <dd className="mt-1 text-base font-semibold text-gray-900">{new Date(profile.joining_date).toLocaleDateString('en-GB')}</dd>
+                <dt className="text-sm font-medium text-slate-500">Joining Date</dt>
+                <dd className="mt-1 text-base font-semibold text-slate-900">{new Date(profile.joining_date).toLocaleDateString('en-GB')}</dd>
               </div>
 
             </dl>

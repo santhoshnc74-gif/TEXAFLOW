@@ -1,149 +1,136 @@
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import { useState } from 'react';
+import { Outlet, Link, useLocation } from 'react-router-dom';
+import { FiLogOut, FiMenu, FiX, FiSearch } from 'react-icons/fi';
 import { authService } from '../services/authService';
-import { FiLogOut } from 'react-icons/fi';
-import { useEffect, useState } from 'react';
-import api from '../services/api';
 
 export default function DashboardLayout() {
-  const role = authService.getUserRole();
-  const user = authService.getCurrentUser();
   const location = useLocation();
+  const user = authService.getCurrentUser();
+  const role = user?.role;
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  
-  const [workerProfile, setWorkerProfile] = useState<any>(null);
+  const workerProfile = user?.worker_profile || user;
 
-  useEffect(() => {
-    if (role === 'WORKER') {
-      api.get('/api/worker/me/profile').then(res => {
-        setWorkerProfile(res.data);
-      }).catch(err => console.error(err));
-    }
-  }, [role]);
+
 
   const handleLogout = () => {
     authService.logout();
   };
 
-  const isActive = (path: string) => location.pathname === path ? 'bg-gray-800' : '';
+  const isActive = (path: string) => location.pathname === path ? 'bg-blue-600 text-white shadow-md' : 'text-slate-300 hover:bg-slate-800 hover:text-white';
 
   return (
-    <div className="flex h-screen bg-gray-100">
-
+    <div className="flex h-screen bg-[#F8FAFC]">
       {/* Mobile Overlay */}
       {isSidebarOpen && (
         <div 
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+          className="fixed inset-0 bg-slate-900 bg-opacity-50 z-40 lg:hidden backdrop-blur-sm transition-opacity"
           onClick={() => setIsSidebarOpen(false)}
         ></div>
       )}
 
       {/* Sidebar */}
-      <aside className={`fixed inset-y-0 left-0 z-50 w-[280px] max-w-[85vw] bg-gray-900 text-white flex flex-col transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:w-64 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-
-        <div className="p-6 flex justify-between items-start">
+      <aside className={`fixed inset-y-0 left-0 z-50 w-[280px] max-w-[85vw] bg-slate-900 text-slate-300 flex flex-col transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:w-72 ${isSidebarOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full'}`}>
+        <div className="p-6 flex justify-between items-start border-b border-slate-800">
           <div>
-            <h1 className="text-2xl font-bold tracking-wider">TEXFLOW</h1>
-            <p className="text-xs text-gray-400 mt-2">Garment / Textile Factory Management System</p>
+            <h1 className="text-2xl font-bold tracking-wider text-white flex items-center">
+              <span className="bg-blue-600 w-8 h-8 rounded-lg flex items-center justify-center mr-3 shadow-lg shadow-blue-500/30">T</span>
+              TEXFLOW
+            </h1>
+            <p className="text-xs text-slate-400 mt-2 font-medium">Smart Textile Factory System</p>
           </div>
-          <button className="lg:hidden text-gray-400 hover:text-white" onClick={() => setIsSidebarOpen(false)}>
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+          <button className="lg:hidden text-slate-400 hover:text-white" onClick={() => setIsSidebarOpen(false)}>
+            <FiX className="w-6 h-6" />
           </button>
         </div>
-        <nav className="flex-1 px-4 space-y-2 overflow-y-auto">
+        <nav className="flex-1 px-4 py-6 space-y-1.5 overflow-y-auto custom-scrollbar">
           {role === 'ADMIN' && (
             <>
-              <Link onClick={() => setIsSidebarOpen(false)} to="/dashboard" className={`block py-2 px-4 rounded hover:bg-gray-800 transition ${isActive('/dashboard')}`}>Dashboard</Link>
-              <Link onClick={() => setIsSidebarOpen(false)} to="/workers" className={`block py-2 px-4 rounded hover:bg-gray-800 transition ${isActive('/workers')}`}>Workers</Link>
-              <Link onClick={() => setIsSidebarOpen(false)} to="/attendance" className={`block py-2 px-4 rounded hover:bg-gray-800 transition ${isActive('/attendance')}`}>Attendance</Link>
-              <Link onClick={() => setIsSidebarOpen(false)} to="/machines" className={`block py-2 px-4 rounded hover:bg-gray-800 transition ${isActive('/machines')}`}>Machines</Link>
-              <Link onClick={() => setIsSidebarOpen(false)} to="/customers" className={`block py-2 px-4 rounded hover:bg-gray-800 transition ${isActive('/customers')}`}>Customers</Link>
-              <Link onClick={() => setIsSidebarOpen(false)} to="/orders" className={`block py-2 px-4 rounded hover:bg-gray-800 transition ${isActive('/orders')}`}>Orders</Link>
-              <Link onClick={() => setIsSidebarOpen(false)} to="/production" className={`block py-2 px-4 rounded hover:bg-gray-800 transition ${isActive('/production')}`}>Production</Link>
-              <Link onClick={() => setIsSidebarOpen(false)} to="/ai-predictions" className={`block py-2 px-4 rounded hover:bg-gray-800 transition ${isActive('/ai-predictions')}`}>AI Predictions</Link>
-              <Link onClick={() => setIsSidebarOpen(false)} to="/analytics" className={`block py-2 px-4 rounded hover:bg-gray-800 transition ${isActive('/analytics')}`}>Analytics</Link>
-              <Link onClick={() => setIsSidebarOpen(false)} to="/reports" className={`block py-2 px-4 rounded hover:bg-gray-800 transition ${isActive('/reports')}`}>Reports</Link>
-              <Link onClick={() => setIsSidebarOpen(false)} to="/admin/users" className={`block py-2 px-4 rounded hover:bg-gray-800 transition ${isActive('/admin/users')}`}>User Accounts</Link>
+              <Link onClick={() => setIsSidebarOpen(false)} to="/dashboard" className={`block py-2.5 px-4 rounded-xl transition-all duration-200 font-medium ${isActive('/dashboard')}`}>Dashboard</Link>
+              <Link onClick={() => setIsSidebarOpen(false)} to="/workers" className={`block py-2.5 px-4 rounded-xl transition-all duration-200 font-medium ${isActive('/workers')}`}>Workers</Link>
+              <Link onClick={() => setIsSidebarOpen(false)} to="/attendance" className={`block py-2.5 px-4 rounded-xl transition-all duration-200 font-medium ${isActive('/attendance')}`}>Attendance</Link>
+              <Link onClick={() => setIsSidebarOpen(false)} to="/machines" className={`block py-2.5 px-4 rounded-xl transition-all duration-200 font-medium ${isActive('/machines')}`}>Machines</Link>
+              <Link onClick={() => setIsSidebarOpen(false)} to="/customers" className={`block py-2.5 px-4 rounded-xl transition-all duration-200 font-medium ${isActive('/customers')}`}>Customers</Link>
+              <Link onClick={() => setIsSidebarOpen(false)} to="/orders" className={`block py-2.5 px-4 rounded-xl transition-all duration-200 font-medium ${isActive('/orders')}`}>Orders</Link>
+              <Link onClick={() => setIsSidebarOpen(false)} to="/production" className={`block py-2.5 px-4 rounded-xl transition-all duration-200 font-medium ${isActive('/production')}`}>Production</Link>
+              <Link onClick={() => setIsSidebarOpen(false)} to="/ai-predictions" className={`block py-2.5 px-4 rounded-xl transition-all duration-200 font-medium ${location.pathname === '/ai-predictions' ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-md shadow-purple-500/20' : 'text-slate-300 hover:bg-slate-800 hover:text-purple-300'}`}>AI Predictions</Link>
+              <Link onClick={() => setIsSidebarOpen(false)} to="/analytics" className={`block py-2.5 px-4 rounded-xl transition-all duration-200 font-medium ${isActive('/analytics')}`}>Analytics</Link>
+              <Link onClick={() => setIsSidebarOpen(false)} to="/reports" className={`block py-2.5 px-4 rounded-xl transition-all duration-200 font-medium ${isActive('/reports')}`}>Reports</Link>
+              
+              <div className="pt-4 mt-4 border-t border-slate-800">
+                <p className="px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">System</p>
+                <Link onClick={() => setIsSidebarOpen(false)} to="/admin/users" className={`block py-2.5 px-4 rounded-xl transition-all duration-200 font-medium ${isActive('/admin/users')}`}>User Accounts</Link>
+              </div>
             </>
           )}
 
           {role === 'WORKER' && (
             <>
-              <Link onClick={() => setIsSidebarOpen(false)} to="/worker-dashboard" className={`flex items-center py-2.5 px-4 rounded transition-colors ${isActive('/worker-dashboard') ? 'bg-[#1687F8] text-white' : 'text-gray-300 hover:bg-gray-800'}`}>
-                <span className="mr-3">🏠</span> My Dashboard
-              </Link>
-              <Link onClick={() => setIsSidebarOpen(false)} to="/worker-profile" className={`flex items-center py-2.5 px-4 rounded transition-colors ${isActive('/worker-profile') ? 'bg-[#1687F8] text-white' : 'text-gray-300 hover:bg-gray-800'}`}>
-                <span className="mr-3">👤</span> My Profile
-              </Link>
-              <Link onClick={() => setIsSidebarOpen(false)} to="/my-attendance" className={`flex items-center py-2.5 px-4 rounded transition-colors ${isActive('/my-attendance') ? 'bg-[#1687F8] text-white' : 'text-gray-300 hover:bg-gray-800'}`}>
-                <span className="mr-3">📅</span> My Attendance
-              </Link>
-              <Link onClick={() => setIsSidebarOpen(false)} to="/my-production" className={`flex items-center py-2.5 px-4 rounded transition-colors ${isActive('/my-production') ? 'bg-[#1687F8] text-white' : 'text-gray-300 hover:bg-gray-800'}`}>
-                <span className="mr-3">📊</span> My Production
-              </Link>
-              <Link onClick={() => setIsSidebarOpen(false)} to="/change-password" className={`flex items-center py-2.5 px-4 rounded transition-colors ${isActive('/change-password') ? 'bg-[#1687F8] text-white' : 'text-gray-300 hover:bg-gray-800'}`}>
-                <span className="mr-3">🔒</span> Change Password
-              </Link>
+              <Link onClick={() => setIsSidebarOpen(false)} to="/worker-dashboard" className={`block py-2.5 px-4 rounded-xl transition-all duration-200 font-medium ${isActive('/worker-dashboard')}`}>My Dashboard</Link>
+              <Link onClick={() => setIsSidebarOpen(false)} to="/worker-profile" className={`block py-2.5 px-4 rounded-xl transition-all duration-200 font-medium ${isActive('/worker-profile')}`}>My Profile</Link>
+              <Link onClick={() => setIsSidebarOpen(false)} to="/my-attendance" className={`block py-2.5 px-4 rounded-xl transition-all duration-200 font-medium ${isActive('/my-attendance')}`}>My Attendance</Link>
+              <Link onClick={() => setIsSidebarOpen(false)} to="/my-production" className={`block py-2.5 px-4 rounded-xl transition-all duration-200 font-medium ${isActive('/my-production')}`}>My Production</Link>
             </>
           )}
-
         </nav>
         
-        {role === 'ADMIN' && (
-          <div className="p-4 bg-gray-800">
-             <Link onClick={() => setIsSidebarOpen(false)} to="/change-password" className="block py-2 px-4 rounded text-sm hover:bg-gray-700 transition">Change Password</Link>
-          </div>
-        )}
+        <div className="p-4 border-t border-slate-800 bg-slate-900/50">
+           <Link onClick={() => setIsSidebarOpen(false)} to="/change-password" className="block py-2.5 px-4 rounded-xl text-sm hover:bg-slate-800 transition-colors duration-200 font-medium text-slate-400 hover:text-white">Change Password</Link>
+        </div>
       </aside>
 
       {/* Main Content */}
       <main className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}
-        <header className="bg-white shadow-sm h-16 flex items-center justify-between px-4 sm:px-6 z-10">
+        <header className="bg-white shadow-sm h-16 flex items-center justify-between px-4 sm:px-8 z-10 border-b border-slate-200">
           <div className="flex items-center overflow-hidden">
-            <button className="lg:hidden text-gray-700 mr-4 focus:outline-none" onClick={() => setIsSidebarOpen(true)}>
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            <button className="lg:hidden text-slate-600 mr-4 focus:outline-none hover:bg-slate-100 p-2 rounded-lg transition-colors" onClick={() => setIsSidebarOpen(true)}>
+              <FiMenu className="w-5 h-5" />
             </button>
-            <h2 className="text-lg sm:text-xl font-semibold text-gray-800 capitalize truncate whitespace-nowrap">
-              {location.pathname.replace('/', '').replace('-', ' ') || 'Dashboard'}
-            </h2>
+            <div className="hidden sm:flex items-center text-slate-400 bg-slate-100 px-3 py-1.5 rounded-lg border border-slate-200 w-64 focus-within:border-blue-400 focus-within:ring-1 focus-within:ring-blue-400 transition-all">
+              <FiSearch className="w-4 h-4 mr-2" />
+              <input type="text" placeholder="Search dashboard..." className="bg-transparent border-none outline-none text-sm w-full text-slate-700 placeholder-slate-400" disabled />
+            </div>
           </div>
           <div className="flex items-center space-x-2 sm:space-x-6 shrink-0">
             
             {role === 'WORKER' && workerProfile ? (
-              <div className="flex items-center space-x-3 border-r border-gray-200 pr-2 sm:pr-6">
-                <div className="h-10 w-10 rounded-full bg-[#1687F8] text-white flex items-center justify-center font-bold text-sm">
+              <div className="flex items-center space-x-3 border-r border-slate-200 pr-2 sm:pr-6">
+                <div className="h-9 w-9 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 text-white flex items-center justify-center font-bold text-sm shadow-sm">
                   {workerProfile.name.substring(0, 2).toUpperCase()}
                 </div>
-                <div className="text-sm text-right">
-                  <p className="font-bold text-[#062B4A]">{workerProfile.name}</p>
-                  <p className="text-gray-500 text-xs font-medium">{workerProfile.employee_id} | {workerProfile.department}</p>
+                <div className="text-sm text-right hidden sm:block">
+                  <p className="font-bold text-slate-800">{workerProfile.name}</p>
+                  <p className="text-slate-500 text-xs font-medium">{workerProfile.employee_id} | {workerProfile.department}</p>
                 </div>
               </div>
             ) : (
-              <div className="hidden sm:block text-sm text-right border-r border-gray-200 pr-6">
-                <p className="font-semibold text-gray-900">{user?.username}</p>
-                <p className="text-gray-500 text-xs uppercase">{user?.role}</p>
+              <div className="flex items-center space-x-3 border-r border-slate-200 pr-4 sm:pr-6">
+                <div className="hidden sm:block text-sm text-right">
+                  <p className="font-bold text-slate-800">{user?.username || 'Admin'}</p>
+                  <p className="text-blue-600 text-xs font-bold uppercase tracking-wider">{user?.role || 'ADMIN'}</p>
+                </div>
+                <div className="h-9 w-9 rounded-full bg-slate-800 text-white flex items-center justify-center font-bold text-sm shadow-sm border-2 border-slate-200">
+                  A
+                </div>
               </div>
             )}
 
             <button 
               onClick={handleLogout}
-              className="flex items-center text-gray-500 hover:text-red-600 transition font-medium text-sm"
+              className="flex items-center text-slate-500 hover:text-red-600 transition-colors font-semibold text-sm px-2 py-1 rounded-lg hover:bg-red-50"
               title="Logout"
             >
-              <FiLogOut className="h-5 w-5 mr-1.5" /> Logout
+              <FiLogOut className="h-4 w-4 sm:mr-1.5" /> <span className="hidden sm:inline">Logout</span>
             </button>
           </div>
         </header>
         
         {/* Content Area */}
-        <div className="flex-1 overflow-y-auto overflow-x-hidden p-4 sm:p-6">
+        <div className="flex-1 overflow-y-auto overflow-x-hidden p-4 sm:p-8">
           <Outlet />
         </div>
       </main>
     </div>
   );
 }
-
-
 

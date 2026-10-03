@@ -105,14 +105,14 @@ export default function Reports() {
   return (
     <div className="flex flex-col h-full overflow-y-auto">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0 mb-6">
-        <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">Factory Reports</h1>
+        <div className="flex flex-col"><h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Analytics Reports</h1><p className="text-sm text-slate-500 mt-1">Generate and export factory insights.</p></div>
       </div>
 
-      <div className="bg-white rounded-lg shadow p-6 mb-6">
+      <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 hover:shadow-md transition-shadow duration-200 mb-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 items-end">
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1">Report Type</label>
-            <select value={reportType} onChange={e => { setReportType(e.target.value); setReportData(null); }} className="w-full border rounded px-3 py-2 bg-gray-50">
+            <label className="block text-sm font-semibold text-slate-700 mb-1">Report Type</label>
+            <select value={reportType} onChange={e => { setReportType(e.target.value); setReportData(null); }} className="w-full border rounded px-3 py-2 bg-slate-50">
               <option value="factory_summary">Factory Summary</option>
               <option value="attendance">Attendance Report</option>
               <option value="workers">Worker Report</option>
@@ -123,8 +123,8 @@ export default function Reports() {
             </select>
           </div>
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1">Date Range</label>
-            <select value={dateFilter} onChange={e => setDateFilter(e.target.value)} className="w-full border rounded px-3 py-2 bg-gray-50">
+            <label className="block text-sm font-semibold text-slate-700 mb-1">Date Range</label>
+            <select value={dateFilter} onChange={e => setDateFilter(e.target.value)} className="w-full border rounded px-3 py-2 bg-slate-50">
               <option value="today">Today</option>
               <option value="last7">Last 7 Days</option>
               <option value="last30">Last 30 Days</option>
@@ -136,12 +136,12 @@ export default function Reports() {
           {dateFilter === 'custom' ? (
             <div className="col-span-1 sm:col-span-2 md:col-span-2 grid grid-cols-2 gap-2">
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-1">From</label>
-                <input type="date" value={customStart} onChange={e => setCustomStart(e.target.value)} className="w-full border rounded px-3 py-2 bg-gray-50" />
+                <label className="block text-sm font-semibold text-slate-700 mb-1">From</label>
+                <input type="date" value={customStart} onChange={e => setCustomStart(e.target.value)} className="w-full border rounded px-3 py-2 bg-slate-50" />
               </div>
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-1">To</label>
-                <input type="date" value={customEnd} onChange={e => setCustomEnd(e.target.value)} className="w-full border rounded px-3 py-2 bg-gray-50" />
+                <label className="block text-sm font-semibold text-slate-700 mb-1">To</label>
+                <input type="date" value={customEnd} onChange={e => setCustomEnd(e.target.value)} className="w-full border rounded px-3 py-2 bg-slate-50" />
               </div>
             </div>
           ) : (
@@ -152,7 +152,7 @@ export default function Reports() {
             <button 
               onClick={handleGenerate} 
               disabled={loading}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition"
+              className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-2 px-4 rounded-lg shadow-sm transition-all duration-200 transition"
             >
               {loading ? 'Generating...' : 'Generate Report'}
             </button>
@@ -162,15 +162,15 @@ export default function Reports() {
       </div>
 
       {reportData && (
-        <div className="bg-white rounded-lg shadow flex flex-col flex-1 overflow-hidden">
-          <div className="px-6 py-4 border-b flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-gray-50">
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 flex flex-col flex-1 overflow-hidden">
+          <div className="px-6 py-4 border-b flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-slate-50">
             <div>
-              <h2 className="text-lg font-bold text-gray-800">{reportData.report_type}</h2>
-              <p className="text-xs text-gray-500">Date Range: {reportData.date_range} | Generated: {new Date(reportData.generated_at).toLocaleString()}</p>
+              <h2 className="text-lg font-bold text-slate-800">{reportData.report_type}</h2>
+              <p className="text-xs text-slate-500">Date Range: {reportData.date_range} | Generated: {new Date(reportData.generated_at).toLocaleString()}</p>
             </div>
             <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full sm:w-auto">
-              <button onClick={handleExportCSV} className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm font-bold shadow transition">Export CSV</button>
-              <button onClick={handleExportPDF} className="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded text-sm font-bold shadow transition">Export PDF</button>
+              <button onClick={handleExportCSV} className="w-full sm:w-auto bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-4 py-2 rounded-lg text-sm font-semibold shadow-sm transition-all duration-200">Export CSV</button>
+              <button onClick={handleExportPDF} className="w-full sm:w-auto bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-2 rounded-lg text-sm font-semibold shadow-sm transition-all duration-200">Export PDF</button>
             </div>
           </div>
           
@@ -180,8 +180,8 @@ export default function Reports() {
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 mb-6">
                  {Object.entries(reportData.summary).map(([key, value]) => (
                    <div key={key} className="bg-blue-50 rounded p-3 border border-blue-100 shadow-sm">
-                     <div className="text-xs text-gray-500 font-semibold mb-1">{key}</div>
-                     <div className="text-lg sm:text-xl font-bold text-gray-800">{value as any}</div>
+                     <div className="text-xs text-slate-500 font-semibold mb-1">{key}</div>
+                     <div className="text-lg sm:text-xl font-bold text-slate-800">{value as any}</div>
                    </div>
                  ))}
               </div>
@@ -191,7 +191,7 @@ export default function Reports() {
             {reportType === 'factory_summary' ? (
               <div className="max-w-2xl mx-auto overflow-x-auto">
                 <table className="min-w-max w-full border text-left text-sm">
-                  <thead className="bg-gray-100">
+                  <thead className="bg-slate-100">
                     <tr>
                       <th className="p-3 border-b">Metric</th>
                       <th className="p-3 border-b text-right">Value</th>
@@ -199,9 +199,9 @@ export default function Reports() {
                   </thead>
                   <tbody className="divide-y">
                     {Object.keys(reportData.summary).map(key => (
-                      <tr key={key} className="hover:bg-gray-50">
-                        <td className="p-3 font-semibold text-gray-700">{key}</td>
-                        <td className="p-3 text-right font-bold text-gray-900">{reportData.summary[key]}</td>
+                      <tr key={key} className="hover:bg-slate-50 transition-colors duration-150">
+                        <td className="p-3 font-semibold text-slate-700">{key}</td>
+                        <td className="p-3 text-right font-bold text-slate-900">{reportData.summary[key]}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -210,21 +210,21 @@ export default function Reports() {
             ) : (
               <div className="overflow-x-auto border rounded">
                 {!reportData.data || reportData.data.length === 0 ? (
-                  <div className="p-8 text-center text-gray-500 font-semibold">No records found for selected date range.</div>
+                  <div className="p-8 text-center text-slate-500 font-semibold">No records found for selected date range.</div>
                 ) : (
                   <table className="min-w-max w-full text-left text-sm">
-                    <thead className="bg-gray-100 border-b">
+                    <thead className="bg-slate-50 border-b border-slate-200">
                       <tr>
                         {Object.keys(reportData.data[0]).map(col => (
-                          <th key={col} className="p-3 font-semibold text-gray-700">{col}</th>
+                          <th key={col} className="p-3 font-semibold text-slate-700">{col}</th>
                         ))}
                       </tr>
                     </thead>
                     <tbody className="divide-y">
                       {reportData.data.map((row: any, i: number) => (
-                        <tr key={i} className="hover:bg-gray-50">
+                        <tr key={i} className="hover:bg-slate-50 transition-colors duration-150">
                           {Object.keys(reportData.data[0]).map(col => (
-                            <td key={col} className="p-3 text-gray-600">{row[col] || '-'}</td>
+                            <td key={col} className="p-3 text-slate-600">{row[col] || '-'}</td>
                           ))}
                         </tr>
                       ))}

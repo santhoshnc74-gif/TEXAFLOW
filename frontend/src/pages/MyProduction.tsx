@@ -34,46 +34,46 @@ const MyProduction = () => {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'In Progress': return 'bg-blue-100 text-blue-800';
-      case 'Planned': return 'bg-gray-100 text-gray-800';
-      case 'Completed': return 'bg-green-100 text-green-800';
-      case 'Delayed': return 'bg-red-100 text-red-800';
-      default: return 'bg-gray-100 text-gray-800';
+      case 'In Progress': return 'bg-blue-50 text-blue-700 border-blue-200';
+      case 'Planned': return 'bg-slate-50 text-slate-700 border-slate-200';
+      case 'Completed': return 'bg-green-50 text-green-700 border-green-200';
+      case 'Delayed': return 'bg-red-50 text-red-700 border-red-200';
+      default: return 'bg-slate-50 text-slate-700 border-slate-200';
     }
   };
 
   const renderTable = (assignments: any[], title: string) => (
     <div className="mb-10">
       <h2 className="text-xl font-bold text-[#062B4A] mb-4">{title}</h2>
-      <div className="bg-white shadow-sm border border-gray-200 rounded-xl overflow-hidden">
+      <div className="bg-white shadow-sm border border-slate-200 rounded-xl overflow-hidden">
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-[#F6F8FB]">
               <tr>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Prod Code</th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Order</th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Product</th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Stage</th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Role</th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Status</th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Dates</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Prod Code</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Order</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Product</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Stage</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Role</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Status</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Dates</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-100">
               {assignments.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="px-6 py-12 text-center text-gray-500">
+                  <td colSpan={7} className="px-6 py-12 text-center text-slate-500">
                     No assignments found.
                   </td>
                 </tr>
               ) : (
                 assignments.map((assignment, idx) => (
-                  <tr key={idx} className="hover:bg-gray-50 transition-colors">
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">{assignment.production_code}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{assignment.order_number}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{assignment.product_name}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{assignment.stage}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{assignment.role}</td>
+                  <tr key={idx} className="hover:bg-slate-50 transition-colors duration-150 transition-colors">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-slate-900">{assignment.production_code}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-500">{assignment.order_number}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900">{assignment.product_name}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-500">{assignment.stage}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-500">{assignment.role}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm">
                       <span className={`px-2.5 py-1 inline-flex text-xs leading-5 font-bold rounded-full ${getStatusColor(assignment.status)}`}>
                         {assignment.status}
@@ -82,7 +82,7 @@ const MyProduction = () => {
                          <div className="text-xs text-gray-400 mt-1">{assignment.progress_percentage}%</div>
                       )}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-500">
                       <div className="text-xs">
                         <span className="text-gray-400">Start:</span> {assignment.start_date || '-'}
                       </div>
@@ -104,7 +104,7 @@ const MyProduction = () => {
     <div className="max-w-7xl mx-auto">
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-[#062B4A]">My Production Assignments</h1>
-        <p className="text-gray-500 mt-1">Your current and past production assignments</p>
+        <p className="text-slate-500 mt-1">Your current and past production assignments</p>
       </div>
 
       {renderTable(currentAssignments, 'Current Assignments')}
