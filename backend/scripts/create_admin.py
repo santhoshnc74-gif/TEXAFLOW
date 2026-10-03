@@ -23,7 +23,7 @@ def create_admin():
             print("Skipping admin creation: ADMIN_USERNAME or ADMIN_PASSWORD environment variables are missing.")
             return
 
-        print("Creating admin account...")
+        print("Creating admin account from environment variables...")
         admin = UserAccount(
             username=admin_username,
             password_hash=get_password_hash(admin_password),
